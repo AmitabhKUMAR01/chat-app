@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Chat-Sidebar/Sidebar.jsx";
 import { Loader } from "@react-three/drei";
+import ImageUpload from "../components/ImageUploader.jsx";
 
 const Chat = () => {
 
@@ -119,6 +120,7 @@ const Chat = () => {
       >
         <BsFillArrowLeftCircleFill />
       </div>
+      <ImageUpload/>
       <div className="w-[100vw]  flex p-2 justify-center text-emerald-400  ">
         welcome to chat <span></span>
         {user && (

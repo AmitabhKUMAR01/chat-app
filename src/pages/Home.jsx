@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ImageUploader from "../components/ImageUploader";
 
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
           </ul>
         </div>
       </div>
+      {/* <ImageUploader/> */}
     </div>
   );
 };

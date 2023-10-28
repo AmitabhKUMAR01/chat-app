@@ -6,6 +6,7 @@
 import UserList from '../components/One2One/UsersList';
 import DisplayMessages from '../components/One2One/DisplayMessages';
 import SendMessages from '../components/One2One/SendMessages';
+import ImageUploader from "../components/ImageUploader.jsx";
 import { useState } from "react";
 const OneToOneChat = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const OneToOneChat = () => {
       <Sidebar/> 
       
       <UserList/>
+      {/* <ImageUploader/> */}
 <div className="container">
 
 <div className="w-[100vw]  flex p-2 justify-center text-emerald-400  ">
