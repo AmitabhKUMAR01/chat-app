@@ -26,7 +26,7 @@ export const account = new Account(client);
 export const storage = new Storage(client);
 export default client;
 account.updatePrefs({
-    origin: ['https://main--melodious-pavlova-a5baab.netlify.app/']
+    origin: ['https://main--melodious-pavlova-a5baab.netlify.app']
   })
     .then(response => {
       console.log('CORS settings updated successfully',res);
