@@ -25,12 +25,3 @@ export const databases = new Databases(client);
 export const account = new Account(client);
 export const storage = new Storage(client);
 export default client;
-account.updatePrefs({
-    origin: ['https://creative-gaufre-75e3c7.netlify.app']
-  })
-    .then(response => {
-      console.log('CORS settings updated successfully',response);
-    })
-    .catch(error => {
-      console.log('Failed to update CORS settings:', error);
-    });
