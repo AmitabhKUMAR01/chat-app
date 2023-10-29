@@ -29,7 +29,7 @@ account.updatePrefs({
     origin: ['https://main--melodious-pavlova-a5baab.netlify.app']
   })
     .then(response => {
-      console.log('CORS settings updated successfully',res);
+      console.log('CORS settings updated successfully',response);
     })
     .catch(error => {
       console.log('Failed to update CORS settings:', error);
