@@ -5,6 +5,7 @@ import Loader from "../Loader";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
 import client, { DATABASES_ID,ONE_MESSAGE_COLLECTION } from "../../AppWrite/appwriteConfig";
 import { RemoveMessages, SetMessages, getMessages } from "../../Redux/OneOneChatSlice";
+import { InfinitySpin } from "react-loader-spinner";
 const DisplayMessages = () => {
   const [selectedMessage, setSelectedMessages] = useState("");
     const dispatch =useDispatch();
@@ -19,7 +20,7 @@ const DisplayMessages = () => {
     
 useEffect(()=>{
   setMMessages(Messages);
-},[])
+},[userId])
    
     
     const handleDoubleClick = (message) => {
@@ -124,7 +125,13 @@ useEffect(()=>{
         </div>
       ))
     ) : (
-      <Loader/>
+      <div className='absolute z-50 top-[40%] sm:left-[35%] left-[20%] text-center'>
+        <InfinitySpin 
+  width='200'
+  color="#4fa94d"
+/>
+<h1 className="bg-green-500 ">Choose Your Chat</h1>
+      </div>
     )}
     
   </div>

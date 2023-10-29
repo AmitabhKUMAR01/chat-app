@@ -1,32 +1,22 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import {AiFillHome} from 'react-icons/ai'
+import {RxHamburgerMenu} from 'react-icons/rx'
 
 const Sidebar = () => {
     const [click,setClick] = useState(true)
 
     const sidebarStyles = {
-        transform: click ? "translateX(-110%)" : "translateX(-10%)",
+        transform: click ? "translateX(-120%)" : "translateX(-20%)",
         transition: "transform 0.5s ease-in-out",
         width: "250px",
       };
 
-      const overlayStyles = {
-        opacity: click ? 0.1 : 0,
-        pointerEvents: click ? "auto" : "none",
-        transition: "opacity 0.3s ease-in-out",
-        // position: "fixed",
-        top: "0",
-        left: "0",
-        width: "100%",
-        height: "100%",
-        background: "rgba(0, 0, 0, 0.5)",
-      };
+    
     
   return (
-    <div className={`absolute left-0 bg-transparent rounded-lg h-[100vh] z-50 `} >
-        <div onClick={()=>setClick(prev=>!prev)}>
-           <AiFillHome />
+    <div className={`absolute left-5  bg-transparent rounded-lg h-[100vh] z-50 w-[5rem]`} >
+        <div onClick={()=>setClick(prev=>!prev)} className="text-2xl w-5 hover:text-green-500 ">
+           <RxHamburgerMenu/>
         </div>
         <div className="h-[80vh] p-6 m-3 transition-all duration-500 shadow-md shadow-gray-700  bg-gradient-to-l from-slate-900 to-grey-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-50 "
         style={sidebarStyles}>
@@ -64,7 +54,7 @@ const Sidebar = () => {
             </li>
         </ul>
         </div>
-        <div style={overlayStyles}></div>
+        
     </div>
   )
 }

@@ -15,17 +15,20 @@ const OneToOneChat = () => {
     if (!user) return navigate("/login");
     
   return (
-    <>
+    <div className="one-onechat ">
+      <div className="h-[5rem] pt-5">
+
       <Sidebar/> 
       
       <UserList/>
+      </div>
       {/* <ImageUploader/> */}
 <div className="container">
 
-<div className="w-[100vw]  flex p-2 justify-center text-emerald-400  ">
+<div className="w-[100vw] absolute text-center  left-0 text-xl flex p-2 justify-center top-10 text-black font-semibold  ">
   welcome to chat <span></span>
   {user && (
-    <span className="text-red-400 capitalize ml-4 ">{user[0].name} </span>
+    <span className="text-rose-700 capitalize ml-4 ">{user[0].name} </span>
   )}
 </div>
 
@@ -38,7 +41,7 @@ const OneToOneChat = () => {
     <DisplayMessages/>
 </div>
 </div>
-  </>
+  </div>
   )
 }
 

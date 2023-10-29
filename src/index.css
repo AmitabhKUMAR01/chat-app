@@ -36,6 +36,7 @@ body{
 .container{
   max-width: 600px;
   margin:20px auto;
+  
 }
 
 /* Login & Register Pages */
@@ -135,12 +136,26 @@ input[type="password"], input[type="email"], textarea{
 .room--container{
   padding: 2em;
   background-color: var(--secondaryBgColor);
+  padding: 2rem;
   border-radius: 20px 20px 10px 10px;
   height: 100vh;
   /* overflow-y: scroll; */
   border:1px solid var(--borderColor1);
-}
+ 
 
+      backdrop-filter: blur(14px) saturate(187%);
+      -webkit-backdrop-filter: blur(14px) saturate(187%);
+      background-color: rgba(17, 25, 40, 0.63);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.one-onechat{
+  background-color: #00121f;
+  background-image: 
+      radial-gradient(at 47% 33%, hsl(162.31, 100%, 54%) 0, transparent 59%), 
+      radial-gradient(at 82% 65%, hsl(217.50, 0%, 0%) 0, transparent 55%);
+    
+}
 #message--form{
   display: flex;
   flex-direction: column;

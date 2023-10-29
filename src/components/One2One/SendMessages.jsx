@@ -51,6 +51,7 @@ const SendMessages = () => {
         placeholder="say something"
         onChange={(e) => setMessageBody(e.target.value)}
         value={messageBody}
+        className="h-[4rem]"
       >
         {" "}
       </textarea>

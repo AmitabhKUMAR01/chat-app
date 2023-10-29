@@ -17,12 +17,12 @@ const UserList = () => {
     },[])
     
   return (
-    <>
-    <button className="absolute right-20 w-20 text-3xl hover:text-red-500"  onClick={()=>setIsContactOpen(prev=>!prev)}><BiSolidContact/></button>
+    <div className='right-0'>
+    <button className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"  onClick={()=>setIsContactOpen(prev=>!prev)}><BiSolidContact/></button>
    { isContactOpen&& <div className='p-2 absolute right-0'>
       {
       UsersList.length!==0 ?(
-        <div className='absolute mt-[5rem] right-0 w-[8rem] p-[2rem] h-[30vh] overflow-scroll  bg-gradient-to-r from-sky-900 to-sky-700' >
+        <div className='absolute mt-[5rem] right-0 w-[8rem] p-[2rem] h-[30vh] overflow-scroll  bg-gradient-to-r from-white to-blue-50 text-black font-bold rounded-xl' >
             {UsersList.map((User)=>(
                 <h1 
                 onClick={()=>{
@@ -37,7 +37,7 @@ const UserList = () => {
       )  :<Loader/>
     } 
     </div>}
-    </>
+    </div>
   );
 };
 

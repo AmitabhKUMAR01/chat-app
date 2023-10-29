@@ -120,7 +120,7 @@ const Chat = () => {
       >
         <BsFillArrowLeftCircleFill />
       </div>
-      <ImageUpload/>
+      {/* <ImageUpload/> */}
       <div className="w-[100vw]  flex p-2 justify-center text-emerald-400  ">
         welcome to chat <span></span>
         {user && (
