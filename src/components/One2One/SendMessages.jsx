@@ -57,7 +57,9 @@ const SendMessages = () => {
       </textarea>
     </div>
     <div className="send-btn--wrapper">
-      <input className="btn btn--secondary" type="submit" value="Send" />
+    <div className="send-btn--wrapper">
+            <button className="btn btn--secondary glowing-btn" type="submit" ><span className='glowing-txt'>S<span className='faulty-letter'>EN</span>D</span></button>
+          </div>
     </div>
   </form>
   

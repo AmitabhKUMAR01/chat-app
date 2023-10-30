@@ -110,25 +110,22 @@ const Chat = () => {
 
 
   return (
-    <div className="container">
-      <div>
+    <div className="chat">
+
+    <div className="container p-5">
+    <div className="h-[2rem] pt-1 absolute top-0 left-1">
         <Sidebar/>
       </div>
-      <div
-        onClick={() => navigate("/")}
-        className="pb-6 ml-10 hover:text-red-500 w-min hover:scale-90 font-bold text-3xl"
-      >
-        <BsFillArrowLeftCircleFill />
-      </div>
+
       {/* <ImageUpload/> */}
-      <div className="w-[100vw]  flex p-2 justify-center text-emerald-400  ">
+      <div className="w-[100vw] absolute text-center  left-0 text-xl flex p-2 justify-center top-7 text-white font-semibold    ">
         welcome to chat <span></span>
         {user && (
           <span className="text-red-400 capitalize ml-4 ">{user[0].name} </span>
         )}
       </div>
       
-      <div className="room--container">
+      <div className="room--container bg-tran">
         <form id="message--form" onSubmit={handleSubmit}>
           <div>
             <textarea
@@ -137,15 +134,16 @@ const Chat = () => {
               placeholder="say something"
               onChange={(e) => setMessageBody(e.target.value)}
               value={messageBody}
+              className="h-[4rem]"
             >
               {" "}
             </textarea>
           </div>
           <div className="send-btn--wrapper">
-            <input className="btn btn--secondary" type="submit" value="Send" />
+            <button className="btn btn--secondary glowing-btn" type="submit" ><span className='glowing-txt'>S<span className='faulty-letter'>EN</span>D</span></button>
           </div>
         </form>
-        <div>
+        <div className='messages'>
           {messages.length !== 0 ? (
             messages.map((message) => (
               <div
@@ -206,6 +204,7 @@ const Chat = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };
