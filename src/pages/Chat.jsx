@@ -140,7 +140,7 @@ const Chat = () => {
             </textarea>
           </div>
           <div className="send-btn--wrapper">
-            <button className="btn btn--secondary glowing-btn" type="submit" ><span className='glowing-txt'>S<span className='faulty-letter'>EN</span>D</span></button>
+            <button className="btn  one-btn" type="submit" >SEND</button>
           </div>
         </form>
         <div className='messages'>
