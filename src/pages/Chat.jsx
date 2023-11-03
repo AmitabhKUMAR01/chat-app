@@ -4,14 +4,13 @@ import client, {
   COLLECTIONS_ID_MESSAGE,
 } from "../AppWrite/appwriteConfig.js";
 import { AiFillDelete } from "react-icons/ai";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { ID, Query, Role, Permission } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Chat-Sidebar/Sidebar.jsx";
 import { Loader } from "@react-three/drei";
-import ImageUpload from "../components/ImageUploader.jsx";
+
 
 const Chat = () => {
 
@@ -140,7 +139,7 @@ const Chat = () => {
             </textarea>
           </div>
           <div className="send-btn--wrapper">
-            <button className="btn  one-btn" type="submit" >SEND</button>
+            <button className="btn  one-btn select-none" type="submit" >SEND</button>
           </div>
         </form>
         <div className='messages'>
@@ -168,7 +167,7 @@ const Chat = () => {
                   {visibleDeleteMessages &&
                     selectedMessage &&
                     selectedMessage.$id === message.$id && (
-                      <div>
+                      <div >
                         <small className="message-timestamp">
                           {" "}
                           {new Date(message.$createdAt).toLocaleString()}
@@ -188,12 +187,12 @@ const Chat = () => {
                 {message.$permissions.includes(
                   `delete(\"user:${user[0].$id}\")`
                 ) ? (
-                  <div className={` message--body--owner`}>
+                  <div className={` message--body--owner cursor-pointer`}>
                     <span></span>
                     <span>{message.body}</span>
                   </div>
                 ) : (
-                  <div className={` message--body`}>
+                  <div className={` message--body cursor-pointer`}>
                     <span>{message.body}</span>
                   </div>
                 )}

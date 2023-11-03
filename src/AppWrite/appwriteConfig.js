@@ -12,6 +12,9 @@ export const TODO_DATABASES_ID = '6534d5a0455ffff185af'
 export const TODO_COLLECTIONS_ID_MESSAGE = '6534d5aecdcdaca20991'
 export const USER_PROFILE_BUCKET_ID = '653c9234cdc90dd099a0'
 
+export const GROUP_LIST_COLLECTION_ID = '65432577b7f17c6855ec'
+export const GROUP_MESSAGES_COLLECTION_ID = '654326a3621cbcf37bdc'
+
 client
     .setEndpoint('https://cloud.appwrite.io/v1')
     .setProject('6530b6619a68a822cdbf')

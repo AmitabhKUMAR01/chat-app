@@ -4,13 +4,13 @@ import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
 import client, {
   DATABASES_ID,
-  ONE_MESSAGE_COLLECTION,
+  GROUP_MESSAGES_COLLECTION_ID,
 } from "../../AppWrite/appwriteConfig";
 import {
   RemoveMessages,
   SetMessages,
   getMessages,
-} from "../../Redux/OneOneChatSlice";
+} from "../../Redux/GroupChatSlice";
 import { InfinitySpin } from "react-loader-spinner";
 
 
@@ -18,7 +18,8 @@ const DisplayMessages = () => {
   const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
-  const Messages = useSelector((state) => state.OneOne.Messages);
+  const Messages = useSelector((state) => state.GroupChat.Messages);
+  const selectedGroup = useSelector((state) => state.GroupChat.selectedGroup);
   const user = useSelector((state) => state.Chat.user);
   
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
@@ -27,7 +28,7 @@ const DisplayMessages = () => {
 
   useEffect(() => {
     setMMessages(Messages);
-  }, [userId]);
+  }, [selectedGroup.id]);
 
   const handleDoubleClick = (message) => {
     setVisibleDeleteMessages((prev) => !prev);
@@ -37,7 +38,7 @@ const DisplayMessages = () => {
   useEffect(() => {
     dispatch(getMessages());
     const unsubscribe = client.subscribe(
-      `databases.${DATABASES_ID}.collections.${ONE_MESSAGE_COLLECTION}.documents`,
+      `databases.${DATABASES_ID}.collections.${GROUP_MESSAGES_COLLECTION_ID}.documents`,
       (response) => {
         console.log("Real Time Res", response);
         if (
@@ -73,18 +74,16 @@ const DisplayMessages = () => {
       <div className="messages">
         {MMessages.length !== 0 ? (
           MMessages.map((message) => (
-            <div
+            message.group_name===selectedGroup.groupname && <div
               onClick={() => handleDoubleClick(message)}
               className="message--wrapper"
               key={message.$id}
             >
               <div className="message--header">
                 <p>
-                  {message?.username ? (
+                  {message?.sender_name ? (
                     <span className="message--name--owner capitalize text-gray-400 font-bold">
-                      {userId + user[0].$id === message.unique_msg_02
-                        ? message.username
-                        : ""}
+                      {user[0].$id !== message.sender_id?message.sender_name:null }
                     </span>
                   ) : (
                     <span className="capitalize text-gray-400 font-semibold">
@@ -115,13 +114,12 @@ const DisplayMessages = () => {
                   )}
               </div>
 
-              {userId + user[0].$id === message.unique_msg_01 ||
-              user[0].$id + userId === message.unique_msg_01 ? ( // Check if the message is from the selected user
+              {selectedGroup.id.includes(user[0].$id) ? ( // Check if the message is from the selected user
                 <div
                   className={`${
-                    userId + user[0].$id === message.unique_msg_02
-                      ? "message--body"
-                      : "message--body--owner"
+                     user[0].$id === message.sender_id
+                      ? "message--body--owner"
+                      : "message--body"
                   }`}
                 >
                   <span></span>

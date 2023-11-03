@@ -1,13 +1,15 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ImageUploader from "../components/ImageUploader";
-
-
+import Lottie from "lottie-react";
+import phone from '../assets/smartphone.json'
 const Home = () => {
   const user = useSelector((state) => state.Chat.user);
   console.log("uuser", user);
+  
+
   return (
-    <div className="bg-gradient-to-tr from-pink-500 to-indigo-800 min-h-[100vh] z-0 ">
+    <div className="bg-gradient-to-tr from-pink-500 to-indigo-800 min-h-[100vh] z-0 border-2 ">
 
       <div className="navbar">
         
@@ -36,6 +38,9 @@ const Home = () => {
         </div>
       </div>
       {/* <ImageUploader/> */}
+      <div className="box  bg-green-400 w-[35rem] h-[25rem]">
+          <Lottie animationData={phone}/>
+      </div>
     </div>
   );
 };

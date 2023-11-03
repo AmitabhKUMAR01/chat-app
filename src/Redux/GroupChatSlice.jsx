@@ -1,64 +1,52 @@
-import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-import { DATABASES_ID,USER_COLLECTIONS,databases,ONE_MESSAGE_COLLECTION,COLLECTIONS_ID_MESSAGE } from "../AppWrite/appwriteConfig";
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { DATABASES_ID, GROUP_LIST_COLLECTION_ID,GROUP_MESSAGES_COLLECTION_ID} from "../AppWrite/appwriteConfig";
+import { databases } from "../AppWrite/appwriteConfig";
 import { Query } from "appwrite";
-export const getUsersList= createAsyncThunk('getUsersList',async()=>{
+
+export const getGroupList= createAsyncThunk('getGroupList',async()=>{
     
         const response = await databases.listDocuments(
           DATABASES_ID,
-          USER_COLLECTIONS,
+          GROUP_LIST_COLLECTION_ID,
           [Query.orderDesc("$createdAt")]
         );
-        console.log("response =<< ", response.documents);
+        console.log("response =<< Group", response.documents);
         return response.documents;
       
 })
-
 export const getMessages = createAsyncThunk('getMessages',async() =>{
     const response = await databases.listDocuments(
         DATABASES_ID,
-        ONE_MESSAGE_COLLECTION,
+        GROUP_MESSAGES_COLLECTION_ID,
         [Query.orderDesc("$createdAt")]
       );
-      console.log("response =<>?=> ", response.documents);
+      console.log("response =<>?=>Group ", response.documents);
       return response.documents;
 })
 
 export const deleteMessage= createAsyncThunk('deleteMessage',async(message_id) => {
     const response = await databases.deleteDocument(
         DATABASES_ID,
-        ONE_MESSAGE_COLLECTION,
+        GROUP_MESSAGES_COLLECTION_ID,
         message_id
       );
       
-      console.log("deleted", response);
+      console.log("deleted Group", response);
       return response;
 });
-
-const OneOneChatSlice = createSlice({
-    name: 'OneOneChatSlice',
-    initialState: {
-        UsersList:[],
+const GroupChatSlice = createSlice({
+    name: 'GroupChatSlice',
+    initialState:{
+        GroupList:[],
         Messages:[],
-        selectedUser:{id:'', username:''},
-        
-        groupUsers:[],
-        isLoading:false,
-        Deleted:false,
-        
-        
+        selectedGroup:{id:'', groupname:''},
+        isLoading: false,
     },
     reducers:{
-        SelectUser(state,action){
-            state.selectedUser.id =action.payload.id;
-            state.selectedUser.username = action.payload.username;
-            console.log(action.payload.id,"action payload");
-        },
-        SelectGroupUsers(state,action){
-            const isAlreadySelected = state.groupUsers.find(user => user.id===state.selectedUser.id);
-            if(!isAlreadySelected) state.groupUsers =[...state.groupUsers,state.selectedUser];
-            
-            console.log(state.groupUsers,"action group users");
+        SelectGroup(state,action){
+            state.selectedGroup.id =action.payload.id;
+            state.selectedGroup.groupname = action.payload.groupname;
+            console.log(action.payload.id,"action payload im am group id");
         },
         SetMessages(state, action) {
             state.Messages.push(action.payload);
@@ -70,14 +58,14 @@ const OneOneChatSlice = createSlice({
         }
     },
     extraReducers:(builder)=>{
-        builder.addCase(getUsersList.pending,(state,action)=>{
+        builder.addCase(getGroupList.pending,(state,action)=>{
             state.isLoading=true
         });
-        builder.addCase(getUsersList.fulfilled,(state,action)=>{
-            state.UsersList=action.payload
+        builder.addCase(getGroupList.fulfilled,(state,action)=>{
+            state.GroupList=action.payload
             state.isLoading=false
         });
-        builder.addCase(getUsersList.rejected,(state,action)=>{
+        builder.addCase(getGroupList.rejected,(state,action)=>{
             state.isLoading=false
         });
         builder.addCase(getMessages.pending,(state,action)=>{
@@ -102,7 +90,8 @@ const OneOneChatSlice = createSlice({
             state.isLoading=false
         });
     }
+
 })
 
-export const {SelectUser, SetMessages,RemoveMessages,SelectGroupUsers} = OneOneChatSlice.actions;
-export default OneOneChatSlice.reducer
+export const {SelectGroup,SetMessages,RemoveMessages}= GroupChatSlice.actions;
+export default  GroupChatSlice.reducer

@@ -1,0 +1,24 @@
+.isOpen {
+    background: white;
+    color: #1c82ff;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    padding:  1rem;
+    box-shadow: 3px 2px 5px rgb(110, 109, 106);
+    transition: all 0.5s ease-in-out; /* Shortened the transition duration */
+    animation: myanime 1s ease-in-out forwards; /* Added 'forwards' to keep the final state */
+  }
+  
+  @keyframes myanime {
+    0% {
+      transform: scale(0.5);
+    }
+    80% {
+      transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+      }
+  }
+  

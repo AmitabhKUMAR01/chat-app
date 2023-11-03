@@ -6,8 +6,9 @@
 import UserList from '../components/One2One/UsersList';
 import DisplayMessages from '../components/One2One/DisplayMessages';
 import SendMessages from '../components/One2One/SendMessages';
-import ImageUploader from "../components/ImageUploader.jsx";
+import Lottie from "lottie-react";
 import { useState } from "react";
+import Robot from '../assets/robot.json'
 const OneToOneChat = () => {
     const navigate = useNavigate();
     const user = useSelector((state) => state.Chat.user); 
@@ -31,7 +32,9 @@ const OneToOneChat = () => {
     <span className="text-rose-700 capitalize ml-4 ">{user[0].name} </span>
   )}
 </div>
-
+<div className="sm:w-[15rem] w-[10rem] absolute sm:left-[15%] right-[5%] top-[-5%]">
+<Lottie animationData={Robot}/>
+</div>
 <div className="room--container">
   
   <SendMessages/>
