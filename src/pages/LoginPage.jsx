@@ -34,7 +34,7 @@ const LoginPage = () => {
   };
 
   return (<div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
-    <div className="sm:w-[30vw] sm:h[40vh]">
+    <div className={`sm:w-[30vw] sm:h[40vh] ${isLoading?'hidden':'block'}`}>
     <Lottie animationData={phone}/>
 
     </div>

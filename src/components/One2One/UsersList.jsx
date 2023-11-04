@@ -4,13 +4,13 @@ import { getUsersList, SelectUser,SelectGroupUsers } from '../../Redux/OneOneCha
 import { useDispatch, useSelector } from 'react-redux';
 import {BiSolidContact} from 'react-icons/bi'
 import Loader from '../Loader';
-const UserList = () => {
+const UserList = ({select}) => {
   
     const dispatch = useDispatch();
     const UsersList= useSelector((state)=>state.OneOne.UsersList)
     const [isContactOpen,setIsContactOpen] =useState(false)
     const user = useSelector((state) => state.Chat.user);
- 
+    const a='amit'
     useEffect(()=>{
         dispatch(getUsersList());
         
@@ -26,9 +26,14 @@ const UserList = () => {
             {UsersList.map((User)=>(
                 <h1 
                 onClick={()=>{
+                  if(select==='user'){
+
                     dispatch(SelectUser({id:User.User_ID,username:User.Username}))
                     // setIsContactOpen(false)
-                    dispatch(SelectGroupUsers());
+                  }else{
+
+                    dispatch(SelectGroupUsers({id:User.User_ID,username:User.Username}));
+                  }
                     
                 }
                 

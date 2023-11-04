@@ -55,8 +55,8 @@ const OneOneChatSlice = createSlice({
             console.log(action.payload.id,"action payload");
         },
         SelectGroupUsers(state,action){
-            const isAlreadySelected = state.groupUsers.find(user => user.id===state.selectedUser.id);
-            if(!isAlreadySelected) state.groupUsers =[...state.groupUsers,state.selectedUser];
+            const isAlreadySelected = state.groupUsers.find(user => user.id===action.payload.id);
+            if(!isAlreadySelected) state.groupUsers =[...state.groupUsers,{id:action.payload.id,username:action.payload.username}];
             
             console.log(state.groupUsers,"action group users");
         },

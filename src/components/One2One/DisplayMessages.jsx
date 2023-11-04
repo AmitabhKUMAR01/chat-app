@@ -87,9 +87,10 @@ const DisplayMessages = () => {
                         : ""}
                     </span>
                   ) : (
-                    <span className="capitalize text-gray-400 font-semibold">
-                      Anonymous user
-                    </span>
+                    null
+                    // <span className="capitalize text-gray-400 font-semibold">
+                    //   Anonymous user
+                    // </span>
                   )}
                 </p>
                 {visibleDeleteMessages &&

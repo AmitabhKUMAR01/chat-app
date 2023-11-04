@@ -57,7 +57,7 @@ const CreateGroup = () => {
         
         <div className={`${isCreateGroupOpen?'isOpen ':'isClose'} absolute max-w-fit min-h-fit border-2 `} >
             <div className="z-50 w-[5vw] h-[1rem] ">
-            <UserList/>
+            <UserList select="group"/>
             </div>        
             <input className="mt-[2rem]" type="text" placeholder="Enter Group name" onChange={(e)=>{
                 setGroupName(e.target.value)
