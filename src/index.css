@@ -340,6 +340,7 @@ background: linear-gradient(90deg, rgba(151,207,194,1) 2%, rgba(213,209,232,1) 4
   left: 10rem; */
   background-color: white;
   padding: .5rem;
+  margin-top: 1rem;
   border-radius: 100%;
   transition: 2s;
   animation: mybtn 2s ease-in-out  infinite;
@@ -358,4 +359,9 @@ background: linear-gradient(90deg, rgba(151,207,194,1) 2%, rgba(213,209,232,1) 4
     transform: scale(1);
     box-shadow: 2px 3px 2px rgb(169, 169, 169);
   }
+}
+.groupList{
+  border: 2px solid rgb(9, 8, 62);
+  animation: mybtn 1s ease-in-out  1;
+  
 }

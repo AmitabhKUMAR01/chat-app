@@ -41,7 +41,7 @@ const OneOneChatSlice = createSlice({
         UsersList:[],
         Messages:[],
         selectedUser:{id:'', username:''},
-        
+        userDocumentId:null,
         groupUsers:[],
         isLoading:false,
         Deleted:false,
@@ -54,11 +54,23 @@ const OneOneChatSlice = createSlice({
             state.selectedUser.username = action.payload.username;
             console.log(action.payload.id,"action payload");
         },
+        
         SelectGroupUsers(state,action){
             const isAlreadySelected = state.groupUsers.find(user => user.id===action.payload.id);
-            if(!isAlreadySelected) state.groupUsers =[...state.groupUsers,{id:action.payload.id,username:action.payload.username}];
+            if(isAlreadySelected){
+                state.groupUsers= state.groupUsers.filter(user => user.id!==action.payload.id);
+            } else{
+
+                state.groupUsers =[...state.groupUsers,{id:action.payload.id,username:action.payload.username}];
+            }
             
             console.log(state.groupUsers,"action group users");
+        },
+        RemoveGroupUsers(state,action){
+            state.groupUsers = state.groupUsers.filter(user => user.id!==action.payload);
+            
+            
+            console.log(state.groupUsers,"action group =>>>users");
         },
         SetMessages(state, action) {
             state.Messages.push(action.payload);
@@ -104,5 +116,5 @@ const OneOneChatSlice = createSlice({
     }
 })
 
-export const {SelectUser, SetMessages,RemoveMessages,SelectGroupUsers} = OneOneChatSlice.actions;
+export const {SelectUser, SetMessages,RemoveMessages,SelectGroupUsers,RemoveGroupUsers} = OneOneChatSlice.actions;
 export default OneOneChatSlice.reducer

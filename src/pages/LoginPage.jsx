@@ -5,8 +5,15 @@ import { LoginUser } from "../Redux/ChatSlice";
 import Loader from "../components/Loader";
 import Lottie from "lottie-react";
 import phone from '../assets/smartphone.json'
+import toast, { Toaster } from "react-hot-toast";
+
+
 const LoginPage = () => {
   const dispatch = useDispatch();
+  
+
+const errorNotify = () => toast.error("Error ");
+
   const user = useSelector((state) => state.Chat.user);
   const isLoading = useSelector((state) => state.Chat.isLoading);
   const navigate = useNavigate();
@@ -30,10 +37,21 @@ const LoginPage = () => {
 
   const submitFom = (e) => {
     e.preventDefault();
-    dispatch(LoginUser(credentials));
+    dispatch(LoginUser(credentials))
+    .then((res)=>{
+      console.log(res,'llllog in');
+      if(res.type === "LoginUser/rejected"){
+        errorNotify();
+      }
+     
+    })
+  
+    
   };
 
   return (<div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
+         <Toaster />
+
     <div className={`sm:w-[30vw] sm:h[40vh] ${isLoading?'hidden':'block'}`}>
     <Lottie animationData={phone}/>
 

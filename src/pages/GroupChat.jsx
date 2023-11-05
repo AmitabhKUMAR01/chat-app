@@ -7,21 +7,11 @@ import { useSelector } from "react-redux"
 import Lottie from "lottie-react";
 import Robot from '../assets/robot.json'
 import Smily from '../assets/smilyface.json'
+import ImageUploader from "../components/ImageUploader"
 const GroupChat = () => {
   const user = useSelector((state) => state.Chat.user); 
   return (
-    // <div>
-    //     <CreateGroup/>
-    //     <GroupList/>
-    //     <div className="container">
-
-    //     <div className="room--container">
-
-    //     <SendMessages/>
-    //     </div>
-    //     </div>
-    //     <DisplayMessages/>
-    // </div>
+ 
     <div className="one-onechat " id="group">
     <div className="h-[5rem] pt-5">
 
@@ -54,6 +44,10 @@ welcome to chat <span></span>
 </div>
   <DisplayMessages/>
 </div>
+</div>
+<div className="fixed bottom-10">
+
+<ImageUploader/>
 </div>
 </div>
   )

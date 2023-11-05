@@ -2,7 +2,7 @@ import { Triangle } from "react-loader-spinner"
 
 const Loader = () => {
   return (
-    <div className='absolute z-50 top-[40%] left-[40%] ' style={{"transform": "translate(-50%, -50%)"}}>
+    <div className='absolute z-50 top-[50%] left-[50%] ' style={{"transform": "translate(-50%, -50%)"}}>
         <Triangle
       height="80"
       width="80"

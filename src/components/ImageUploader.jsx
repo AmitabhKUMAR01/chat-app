@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ID } from "appwrite";
-import { USER_PROFILE_BUCKET_ID, storage } from "../AppWrite/appwriteConfig";
-
+import { USER_PROFILE_BUCKET_ID, storage,databases,USER_COLLECTIONS ,DATABASES_ID,PROJECT_ID} from "../AppWrite/appwriteConfig";
+import { getUsersList } from "../Redux/OneOneChatSlice";
 const ImageUploader = () => {
   const [file, setFile] = useState(null);
+  const dispatch=useDispatch()
   const user = useSelector((state) => state.Chat.user);
-
+  const UsersList= useSelector((state)=>state.OneOne.UsersList)
   const [AllImages,setAllImages] = useState([]);
+  const [user_Detail,setuser_Detail]= useState(null);
   const getAllImage = () => {
     const promise = storage.listFiles(USER_PROFILE_BUCKET_ID);
     promise.then(
@@ -23,9 +25,22 @@ const ImageUploader = () => {
   };
 
   useEffect(()=>{
-    getAllImage();
-    console.log('--------------------------------',AllImages)
+    // getAllImage();
+    // console.log('--------------------------------',AllImages)
+    
+      dispatch(getUsersList());
+      setTimeout(()=>{
+        if(UsersList!==undefined)setuser_Detail( UsersList.filter((User)=>user[0].$id===User.User_ID));
+      console.log('--------------------------------UserDetail',user_Detail);
+      },5000)
+      
+      
+  
   },[file])
+  // useEffect(() => {
+  //   if(UsersList!==undefined)setuser_Detail( UsersList.filter((User)=>user[0].$id===User.User_ID));
+  //     console.log('--------------------------------UserDetail',user_Detail);
+  // }, []);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -38,7 +53,13 @@ const ImageUploader = () => {
         ID.unique(),
         file
       );
-      newImage.name=user[0].$id;
+      let promise = databases.updateDocument(
+        DATABASES_ID,
+        USER_COLLECTIONS,
+        user_Detail[0].$id,
+        {'profile_url': `https://cloud.appwrite.io/v1/storage/buckets/${USER_PROFILE_BUCKET_ID}/files/${newImage.$id}/view?project=${PROJECT_ID}&mode=admin`}
+       );
+      console.log('user iiiid',user[0].$id);
       console.log(newImage,'createdfdskjf',newImage.$userId);
       setFile('')
     } else {

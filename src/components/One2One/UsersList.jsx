@@ -22,14 +22,15 @@ const UserList = ({select}) => {
    { isContactOpen&& <div className='p-2 absolute right-0'>
       {
       UsersList.length!==0 ?(
-        <div className='absolute mt-[5rem] right-0 w-[8rem] p-[2rem] h-[30vh] overflow-scroll border-2 border-black bg-gradient-to-r from-blue-200 to-blue-50 text-black font-bold rounded-xl' >
+        <div className='absolute mt-[5rem]  right-0 w-[8rem] p-[2rem] h-[30vh] overflow-scroll border-2 border-black bg-gradient-to-r from-blue-200 to-blue-50 text-black font-bold rounded-xl' >
             {UsersList.map((User)=>(
-                <h1 
+                
+                <div
                 onClick={()=>{
                   if(select==='user'){
 
                     dispatch(SelectUser({id:User.User_ID,username:User.Username}))
-                    // setIsContactOpen(false)
+                    setIsContactOpen(false)
                   }else{
 
                     dispatch(SelectGroupUsers({id:User.User_ID,username:User.Username}));
@@ -38,7 +39,18 @@ const UserList = ({select}) => {
                 }
                 
                 } 
-                className='cursor-pointer hover:text-red-500' key={User.User_ID}>{user[0].$id!==User.User_ID ?User.Username:''}</h1>
+                className='cursor-pointer hover:text-red-500' key={User.User_ID}>
+                 { user[0].$id!==User.User_ID ? (<div className='flex text-center items-center py-[1rem]'>
+
+                  <img src={User.profile_url} loading='lazy' alt="profile" className='w-[2rem] hover:w-[3rem] border-[2px] border-black rounded-full '/>
+                  <h1>
+
+                  {User.Username}
+                  </h1>
+                  </div>):null}
+                  
+                  </div>
+                
             ))}
         </div>
       )  :<Loader/>

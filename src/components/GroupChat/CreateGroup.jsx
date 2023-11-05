@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import UserList from "../One2One/UsersList";
 import { useEffect, useState } from "react";
 import { databases,DATABASES_ID,GROUP_LIST_COLLECTION_ID } from "../../AppWrite/appwriteConfig";
+import { RemoveGroupUsers } from "../../Redux/OneOneChatSlice";
 import { ID,Permission,Role } from "appwrite";
 import './myStyles.scss'
 
@@ -64,7 +65,8 @@ const CreateGroup = () => {
             }}/>
             <ul>
                 {groupUsers.map((user)=>(
-                    <li key={user.id} className="hover:text-black cursor-pointer">
+                    <li key={user.id}  className="hover:text-black cursor-pointer">
+                        <button  >X</button>
                         {user.username}
                     </li>
                 ))}

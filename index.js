@@ -1,4 +1,6 @@
-const id='6538d4f67f57e7e059b56538d5a044fda30a26d56538d8e2858e8fc59536653a3843e2648c2c6d0465406e97c3464e7f2996'
+const User=[{id:'438290jfds', name:'amit'},{id:'3424dsfdsfds32', name:'sumit'},{id:'fdshfkj324239u48', name:'rahul'}]
 
 
-console.log(id.includes('6538d93b6de0a588a08b'))
+const usr= User.filter((user)=>user.name==='sumit')
+
+console.log(usr)
