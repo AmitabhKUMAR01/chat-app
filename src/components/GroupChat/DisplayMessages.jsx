@@ -75,7 +75,7 @@ const DisplayMessages = () => {
         {MMessages.length !== 0 ? (
           MMessages.map((message) => (
             message.group_name===selectedGroup.groupname && <div
-              onClick={() => handleDoubleClick(message)}
+            onDoubleClick={() => handleDoubleClick(message)}
               className="message--wrapper"
               key={message.$id}
             >
@@ -114,7 +114,7 @@ const DisplayMessages = () => {
                   )}
               </div>
 
-              {selectedGroup.id.includes(user[0].$id) ? ( // Check if the message is from the selected user
+              {selectedGroup.id.includes(user[0].$id) ? ( 
                 <div
                   className={`${
                      user[0].$id === message.sender_id

@@ -74,7 +74,7 @@ const DisplayMessages = () => {
         {MMessages.length !== 0 ? (
           MMessages.map((message) => (
             <div
-              onClick={() => handleDoubleClick(message)}
+              onDoubleClick={() => handleDoubleClick(message)}
               className="message--wrapper"
               key={message.$id}
             >

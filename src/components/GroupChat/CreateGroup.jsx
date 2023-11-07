@@ -38,35 +38,28 @@ const CreateGroup = () => {
           }
         }
 
-    
-    
-
     useEffect(()=>{
         console.log('usersrdsf',groupUsers)
         // setGroupId(groupUsers.map(user=>user.id));
     },[])
-    const sidebarStyles = {
-        transform: isCreateGroupOpen ? "translateX(-120%)" : "translateX(-20%)",
-        transition: "transform 5s ease-in-out",
-        width: "250px",
-      };
+   
   return (
     
     <div className="  z-50 ">
         <button className="" onClick={()=>setIsCreateGroupOpen(prev=>!prev)}>create group</button>
         {isCreateGroupOpen &&
         
-        <div className={`${isCreateGroupOpen?'isOpen ':'isClose'} absolute max-w-fit min-h-fit border-2 `} >
-            <div className="z-50 w-[5vw] h-[1rem] ">
+        <div className={`${isCreateGroupOpen?'isOpen ':'isClose'} absolute min-w-[12rem] min-h-[15rem] border-2 `} >
+            <div className="z-50 w-[5vw] h-[1rem] absolute left-[90%] bottom-10 ">
             <UserList select="group"/>
             </div>        
-            <input className="mt-[2rem]" type="text" placeholder="Enter Group name" onChange={(e)=>{
+            <input className="mt-[2rem] max-w-[10rem]" type="text"  placeholder="Enter Group name" onChange={(e)=>{
                 setGroupName(e.target.value)
             }}/>
             <ul>
                 {groupUsers.map((user)=>(
                     <li key={user.id}  className="hover:text-black cursor-pointer">
-                        <button  >X</button>
+                        
                         {user.username}
                     </li>
                 ))}

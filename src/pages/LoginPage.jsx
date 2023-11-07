@@ -6,7 +6,8 @@ import Loader from "../components/Loader";
 import Lottie from "lottie-react";
 import phone from '../assets/smartphone.json'
 import toast, { Toaster } from "react-hot-toast";
-
+import { motion } from "framer-motion"
+import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,9 @@ const errorNotify = () => toast.error("Error ");
 
   const user = useSelector((state) => state.Chat.user);
   const isLoading = useSelector((state) => state.Chat.isLoading);
+
   const navigate = useNavigate();
-  
+  const [isPasswordVisible,setIsPasswordVisible] =useState(false)
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -52,11 +54,11 @@ const errorNotify = () => toast.error("Error ");
   return (<div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
          <Toaster />
 
-    <div className={`sm:w-[30vw] sm:h[40vh] ${isLoading?'hidden':'block'}`}>
+    <motion.div initial={{y:'-100vh',rotate:380}} animate={{y:0,rotate:0}} transition={{type:"spring",stiffness:80,delay:.1 ,duration:5}} className={`sm:w-[30vw] sm:h[40vh] ${isLoading?'hidden':'block'}`}>
     <Lottie animationData={phone}/>
 
-    </div>
-    <div className="auth--container max-w-full sm:mt-0 mt-[-5rem]">
+    </motion.div>
+    <motion.div initial={{x:'100vw'}} animate={{x:0}} transition={{type:"spring",stiffness:100,delay:.2 ,duration:.7}} className="auth--container max-w-full sm:mt-0 mt-[-5rem]">
       {!isLoading?<div className="form--wrapper">
         <form onSubmit={(e) => submitFom(e)}>
           <div className="field--wrapper">
@@ -70,15 +72,23 @@ const errorNotify = () => toast.error("Error ");
               onChange={handleChange}
             />
             <label>Password</label>
+            <div className="flex text-center items-center">
+
             <input
-              type="password"
+              type={isPasswordVisible?"password":'text'}
               name="password"
+              id="pass"
               required
               placeholder="enter your password"
               value={credentials.password}
               onChange={handleChange}
             />
+            <span className="text-2xl text-rose-600" onClick={()=>setIsPasswordVisible(prev=>!prev)}>
+            {isPasswordVisible?<AiTwotoneEyeInvisible/>:<AiFillEye/>}
+              </span>
+            </div>
             <input
+            
               type="submit"
               className="btn btn--lg btn--main"
               value="Login"
@@ -87,7 +97,7 @@ const errorNotify = () => toast.error("Error ");
         </form>
         
       </div>:<Loader/>}
-    </div>
+    </motion.div>
   </div>
   );
 };

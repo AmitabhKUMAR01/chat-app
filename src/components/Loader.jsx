@@ -2,7 +2,7 @@ import { Triangle } from "react-loader-spinner"
 
 const Loader = () => {
   return (
-    <div className='absolute z-50 top-[50%] left-[50%] ' style={{"transform": "translate(-50%, -50%)"}}>
+    <div className="w-[100vw] h-[100vh] grid justify-center text-center items-center " style={{background:'rgba(1, 13, 23, 0.2)'}} >
         <Triangle
       height="80"
       width="80"

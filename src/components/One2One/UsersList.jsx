@@ -4,25 +4,39 @@ import { getUsersList, SelectUser,SelectGroupUsers } from '../../Redux/OneOneCha
 import { useDispatch, useSelector } from 'react-redux';
 import {BiSolidContact} from 'react-icons/bi'
 import Loader from '../Loader';
+import { motion } from 'framer-motion';
 const UserList = ({select}) => {
   
     const dispatch = useDispatch();
     const UsersList= useSelector((state)=>state.OneOne.UsersList)
     const [isContactOpen,setIsContactOpen] =useState(false)
     const user = useSelector((state) => state.Chat.user);
-    const a='amit'
+    const variants = {
+      open: { scale:1,y:30,x:-20},
+      closed: { scale:0,rotate:60 },
+    };
     useEffect(()=>{
         dispatch(getUsersList());
         
     },[])
     
   return (
-    <div className='right-0 '>
+    <div className='right-0 ' >
     <button className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"  onClick={()=>setIsContactOpen(prev=>!prev)}><BiSolidContact/></button>
-   { isContactOpen&& <div className='p-2 absolute right-0'>
-      {
+    <motion.div className='p-2 absolute right-0'   animate={isContactOpen ? "open" : "closed"}
+        
+        transition={{
+          duration: 3.5,
+          delay: 0.1,
+          type: "spring",
+          stiffness: 100,
+        }}
+        variants={variants}>
+   { isContactOpen&&
+      
       UsersList.length!==0 ?(
-        <div className='absolute mt-[5rem]  right-0 w-[8rem] p-[2rem] h-[30vh] overflow-scroll border-2 border-black bg-gradient-to-r from-blue-200 to-blue-50 text-black font-bold rounded-xl' >
+        <div       style={{'background':'rgba(4, 17, 44, 1)'}}
+       className='absolute   right-0 w-[12rem]  h-[30vh] overflow-scroll p-[.5rem] rounded-md' >
             {UsersList.map((User)=>(
                 
                 <div
@@ -42,7 +56,7 @@ const UserList = ({select}) => {
                 className='cursor-pointer hover:text-red-500' key={User.User_ID}>
                  { user[0].$id!==User.User_ID ? (<div className='flex text-center items-center py-[1rem]'>
 
-                  <img src={User.profile_url} loading='lazy' alt="profile" className='w-[2rem] hover:w-[3rem] border-[2px] border-black rounded-full '/>
+                  <img src={User.profile_url} loading='lazy' alt="profile" className='w-[2rem]  border-[2px] border-black rounded-full '/>
                   <h1>
 
                   {User.Username}
@@ -53,9 +67,9 @@ const UserList = ({select}) => {
                 
             ))}
         </div>
-      )  :<Loader/>
+      )  :null
     } 
-    </div>}
+    </motion.div>
     </div>
   );
 };

@@ -109,7 +109,7 @@ const Chat = () => {
 
 
   return (
-    <div className="chat">
+    <div className="chat" id="group">
 
     <div className="container p-5">
     <div className="h-[2rem] pt-1 absolute top-0 left-1">
@@ -146,7 +146,7 @@ const Chat = () => {
           {messages.length !== 0 ? (
             messages.map((message) => (
               <div
-                onClick={() => handleDoubleClick(message)}
+                onDoubleClick={() => handleDoubleClick(message)}
                 className="message--wrapper"
                 key={message.$id}
               >
@@ -187,7 +187,7 @@ const Chat = () => {
                 {message.$permissions.includes(
                   `delete(\"user:${user[0].$id}\")`
                 ) ? (
-                  <div className={` message--body--owner cursor-pointer`}>
+                  <div className={` message--body--owner cursor-pointer `}>
                     <span></span>
                     <span>{message.body}</span>
                   </div>

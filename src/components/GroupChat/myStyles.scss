@@ -6,8 +6,8 @@
     border-radius: 2rem;
     padding:  1rem;
     box-shadow: 3px 2px 5px rgb(110, 109, 106);
-    transition: all 0.5s ease-in-out; /* Shortened the transition duration */
-    animation: myanime 1s ease-in-out forwards; /* Added 'forwards' to keep the final state */
+    transition: all 0.5s ease-in-out;
+    animation: myanime 1s ease-in-out forwards; 
   }
   
   @keyframes myanime {

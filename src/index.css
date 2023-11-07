@@ -25,14 +25,17 @@
   /* border: 1px solid red; */
   }
 
-a{
+/* a{
   color: #40e0d0;
-}
+} */
 
 body{
-    background-color: var(--mainBgColor);
+    /* background-color: var(--mainBgColor); */
     color: var(--textColorMain);
     overflow-x: hidden;
+    background: rgb(151,207,194);
+    background: linear-gradient(90deg, rgb(93, 255, 217) 2%, rgba(213,209,232,1) 48%, rgba(198,212,214,1) 74%);
+    
   }
   .chat{
   
@@ -42,6 +45,7 @@ body{
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
+  top:0;
 
 }
 .container{
@@ -52,9 +56,7 @@ body{
 }
 .bg-tran{
   background-color: #030e13;
-   background-image: 
-       radial-gradient(at 47% 33%, hsl(261.87, 100%, 18%) 0, transparent 59%), 
-       radial-gradient(at 82% 65%, hsl(274.05, 100%, 21%) 0, transparent 55%);
+
 
 }
 /* Login & Register Pages */
@@ -86,7 +88,7 @@ body{
 /* input[type="text"],  */
 
 
-input[type="password"], input[type="email"], textarea{
+input[type="password"], input[type="email"], textarea,#pass{
   background: var(--mainBgColor);
   border: none;
   border-bottom: 1px solid var(--borderColor1);
@@ -298,7 +300,7 @@ input[type="password"], input[type="email"], textarea{
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');` */
 
 
 
@@ -328,40 +330,47 @@ input[type="password"], input[type="email"], textarea{
 #group{
   /* background: white; */
   background: rgb(151,207,194);
-background: linear-gradient(90deg, rgba(151,207,194,1) 2%, rgba(213,209,232,1) 48%, rgba(198,212,214,1) 74%);
+background: linear-gradient(90deg, rgb(93, 255, 217) 2%, rgba(213,209,232,1) 48%, rgba(198,212,214,1) 74%);
 }
 /* #group--room{
   background-color: #1c82ff;
 } */
 
-#mybutton {
-  /* position: fixed;
-  top: 6rem;
-  left: 10rem; */
-  background-color: white;
-  padding: .5rem;
-  margin-top: 1rem;
-  border-radius: 100%;
-  transition: 2s;
-  animation: mybtn 2s ease-in-out  infinite;
+
+
+@media only screen and (max-width: 767px)  {
+  
+  @keyframes mybtn {
+    0%{
+      transform: scale(1);
+      box-shadow: 2px 2px 2px rgb(169, 169, 169);
+    }
+    50%{
+      transform: scale(1.1);
+      box-shadow: 2px 1px 2px rgb(0, 0, 0);
+    }
+    100%{
+      transform: scale(1);
+      box-shadow: 2px 3px 2px rgb(169, 169, 169);
+    }
+  }
+  #mybutton {
+    /* position: fixed;
+    top: 6rem;
+    left: 10rem; */
+    background-color: white;
+    padding: .5rem;
+    margin-top: 1rem;
+    border-radius: 100%;
+    transition: .5s;
+    animation: mybtn 2s ease-in-out  infinite;
+  }
 }
 
-@keyframes mybtn {
-  0%{
-    transform: scale(1);
-    box-shadow: 2px 2px 2px rgb(169, 169, 169);
-  }
-  50%{
-    transform: scale(1.1);
-    box-shadow: 2px 1px 2px rgb(0, 0, 0);
-  }
-  100%{
-    transform: scale(1);
-    box-shadow: 2px 3px 2px rgb(169, 169, 169);
-  }
-}
-.groupList{
-  border: 2px solid rgb(9, 8, 62);
-  animation: mybtn 1s ease-in-out  1;
-  
-}
+    .groupList{
+      
+      background-color: wheat;
+      border-radius: 1rem;
+      
+      
+    }

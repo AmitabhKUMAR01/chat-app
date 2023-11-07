@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ImageUploader from "../components/ImageUploader";
 import Lottie from "lottie-react";
 import phone from '../assets/smartphone.json'
+import { motion } from "framer-motion"
+
 const Home = () => {
   const user = useSelector((state) => state.Chat.user);
   console.log("uuser", user);
@@ -38,9 +40,11 @@ const Home = () => {
         </div>
       </div>
       {/* <ImageUploader/> */}
-      <div className="box  bg-green-400 w-[35rem] h-[25rem]">
+      <motion.div initial={{opacity:0,x:'-100vw'}}  animate={{ opacity: 1,x:0  }}   transition={{ type: "spring", stiffness: 300 ,duration:6 ,    repeatType: "reverse",
+}}
+ className="box  bg-green-400 w-[35rem] h-[25rem]">
           <Lottie animationData={phone}/>
-      </div>
+      </motion.div>
     </div>
   );
 };
