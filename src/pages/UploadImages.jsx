@@ -1,9 +1,9 @@
 import ImageUploader from "../components/ImageUploader";import React from 'react'
 
-const UploadImage = () => {
+const UploadImages = () => {
   return (
     <ImageUploader/>
   )
 }
 
-export default UploadImage
+export default UploadImages

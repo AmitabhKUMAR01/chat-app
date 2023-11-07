@@ -8,7 +8,8 @@ import Mythred from './pages/Mythred';
 import Register from './pages/Register';
 import OneToOneChat from './pages/OneToOneChat';
 import GroupChat from './pages/GroupChat';
-import UploadImage from './pages/uploadImage';
+
+import UploadImages from './pages/UploadImages';
 const App = () => {
   return (
     <Routes>
@@ -19,7 +20,7 @@ const App = () => {
       <Route path='/todos' element={<Todos/>} />
       <Route path='/group' element={<GroupChat/>}/>
       <Route path='/one' element={<OneToOneChat/>} />
-      <Route path='/img' element={<UploadImage/>} />
+      <Route path='/img' element={<UploadImages/>} />
       </Route>  
       <Route path='/login' element={<LoginPage/>} />
       <Route path='/register' element={<Register/>} />
