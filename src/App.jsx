@@ -4,7 +4,7 @@ import Chat from './pages/Chat';
 import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
 import PrivateRoutes from './components/PrivateRoutes';
-import Mythred from './pages/Mythred';
+
 import Register from './pages/Register';
 import OneToOneChat from './pages/OneToOneChat';
 import GroupChat from './pages/GroupChat';
@@ -24,7 +24,7 @@ const App = () => {
       </Route>  
       <Route path='/login' element={<LoginPage/>} />
       <Route path='/register' element={<Register/>} />
-      <Route path='/my' element={<Mythred/>} />
+      
     </Routes>
   )
 }

@@ -54,14 +54,14 @@ const GroupChat = () => {
         >
           <Lottie animationData={Smily} />
         </motion.div>
-          <Tilt>
+          
 
-        <div className="room--container border-2 " id={"group--room"}>
+        <motion.div initial={{scale:0}} animate={{scale:.9}} transition={{delay:.2,duration:3,type:'spring',stiffness:300,damping: 18}} className="room--container border-2 " id={"group--room"}>
           <SendMessages />
           <div></div>
           <DisplayMessages />
-        </div>
-          </Tilt>
+        </motion.div>
+          
       </div>
       <div className="fixed bottom-10">
         {/* <ImageUploader /> */}

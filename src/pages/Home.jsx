@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ImageUploader from "../components/ImageUploader";
 import Lottie from "lottie-react";
 import phone from '../assets/smartphone.json'
 import { motion } from "framer-motion"

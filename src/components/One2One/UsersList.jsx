@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import {BiSolidContact} from 'react-icons/bi'
 import Loader from '../Loader';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import {MdGroupAdd} from 'react-icons/md'
 const UserList = ({select}) => {
   
+  const location = useLocation();
     const dispatch = useDispatch();
     const UsersList= useSelector((state)=>state.OneOne.UsersList)
     const [isContactOpen,setIsContactOpen] =useState(false)
@@ -22,7 +25,7 @@ const UserList = ({select}) => {
     
   return (
     <div className='right-0 ' >
-    <button className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"  onClick={()=>setIsContactOpen(prev=>!prev)}><BiSolidContact/></button>
+    <button className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"  onClick={()=>setIsContactOpen(prev=>!prev)}>{location.pathname==='/group'?<MdGroupAdd/>:<BiSolidContact/>}</button>
     <motion.div className='p-2 absolute right-0'   animate={isContactOpen ? "open" : "closed"}
         
         transition={{

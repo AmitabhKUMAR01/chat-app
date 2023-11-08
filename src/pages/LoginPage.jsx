@@ -58,7 +58,7 @@ const errorNotify = () => toast.error("Error ");
     <Lottie animationData={phone}/>
 
     </motion.div>
-    <motion.div initial={{x:'100vw'}} animate={{x:0}} transition={{type:"spring",stiffness:100,delay:.2 ,duration:.7}} className="auth--container max-w-full sm:mt-0 mt-[-5rem]">
+    <motion.div initial={{x:'100vw'}} animate={{x:0}} transition={{type:"spring",stiffness:100,delay:.2 ,duration:.7}} className="auth--container max-w-full sm:mt-0 mt-[-5rem]  ">
       {!isLoading?<div className="form--wrapper">
         <form onSubmit={(e) => submitFom(e)}>
           <div className="field--wrapper">
@@ -72,7 +72,7 @@ const errorNotify = () => toast.error("Error ");
               onChange={handleChange}
             />
             <label>Password</label>
-            <div className="flex text-center items-center">
+            <div className="flex text-center items-center logpass">
 
             <input
               type={isPasswordVisible?"password":'text'}

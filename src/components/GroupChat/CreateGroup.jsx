@@ -5,7 +5,8 @@ import { databases,DATABASES_ID,GROUP_LIST_COLLECTION_ID } from "../../AppWrite/
 import { RemoveGroupUsers } from "../../Redux/OneOneChatSlice";
 import { ID,Permission,Role } from "appwrite";
 import './myStyles.scss'
-
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { motion } from "framer-motion";
 const CreateGroup = () => {
     const disptach = useDispatch();
     const groupUsers = useSelector((state)=>state.OneOne.groupUsers)
@@ -50,6 +51,10 @@ const CreateGroup = () => {
         {isCreateGroupOpen &&
         
         <div className={`${isCreateGroupOpen?'isOpen ':'isClose'} absolute min-w-[12rem] min-h-[15rem] border-2 `} >
+            <motion.button onClick={()=>setIsCreateGroupOpen(false)} initial={{scale:1.3}}  animate={{scale:1.5}} whileHover={{scale:1.3,color:"red"}}>
+
+            <AiOutlineCloseCircle/>
+            </motion.button>
             <div className="z-50 w-[5vw] h-[1rem] absolute left-[90%] bottom-10 ">
             <UserList select="group"/>
             </div>        

@@ -4,6 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import CreateGroup from "../GroupChat/CreateGroup";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Sidebar = () => {
   const [click, setClick] = useState(false);
@@ -17,16 +18,29 @@ const Sidebar = () => {
     open: { opacity: 1, x: 0, rotate: 0, y: 25 },
     closed: { opacity: 0.5, x: "-100vw", rotate: 180 },
   };
+  const burger = {
+    open: { rotate: 90 ,color: "red",scale:.9},
+    closed: {  rotate: 0 ,color:'black',scale:1},
+  };
   return (
     <div
       className={`absolute left-5  bg-transparent rounded-lg h-[100vh] z-50 w-[5rem]`}
     >
-      <div
+      <motion.div
         onClick={() => setClick((prev) => !prev)}
         className="text-2xl w-5 hover:text-green-500 "
+        animate={click ? "open" : "closed"}
+        whileHover={{scale:1.3,color:'green'}}
+        transition={{
+          duration: 2,
+          delay: 0.1,
+          type: "spring",
+          stiffness: 350,
+        }}
+        variants={burger}
       >
-        <RxHamburgerMenu />
-      </div>
+        {click?<AiOutlineClose/>:<RxHamburgerMenu />}
+      </motion.div>
       <Tilt>
 
       <motion.div
