@@ -49,7 +49,6 @@ const LoginPage = () => {
   return (
     <div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
       <Toaster />
-
       <motion.div
         initial={{ y: "-100vh", rotate: 380 }}
         animate={{ y: 0, rotate: 0 }}

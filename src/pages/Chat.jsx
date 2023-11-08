@@ -9,7 +9,7 @@ import { ID, Query, Role, Permission } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Chat-Sidebar/Sidebar.jsx";
-import { Loader } from "@react-three/drei";
+import Loader from "../components/Loader.jsx";
 
 
 const Chat = () => {
