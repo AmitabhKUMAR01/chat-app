@@ -65,6 +65,7 @@ body{
   height: 100vh;
   display: flex;
   align-items: center;
+  background: var(--mainBgColor);
   justify-content: center;
 }
 

@@ -10,19 +10,19 @@ const ImageUploader = () => {
   const UsersList= useSelector((state)=>state.OneOne.UsersList)
   const [AllImages,setAllImages] = useState([]);
   const [user_Detail,setuser_Detail]= useState(null);
-  const getAllImage = () => {
-    const promise = storage.listFiles(USER_PROFILE_BUCKET_ID);
-    promise.then(
-      function (response) {
+  // const getAllImage = () => {
+  //   const promise = storage.listFiles(USER_PROFILE_BUCKET_ID);
+  //   promise.then(
+  //     function (response) {
             
-          setAllImages(response.files)
-          console.log('whole file list =::',response.files); // Array of files in the bucket
-      },
-      function (error) {
-        console.log(error); // Failure
-      }
-    );
-  };
+  //         setAllImages(response.files)
+  //         console.log('whole file list =::',response.files); // Array of files in the bucket
+  //     },
+  //     function (error) {
+  //       console.log(error); // Failure
+  //     }
+  //   );
+  // };
 
   useEffect(()=>{
     // getAllImage();

@@ -1,4 +1,3 @@
-import CreateGroup from "../components/GroupChat/CreateGroup";
 import DisplayMessages from "../components/GroupChat/DisplayMessages";
 import GroupList from "../components/GroupChat/GroupList";
 import SendMessages from "../components/GroupChat/SendMessages";
@@ -9,7 +8,7 @@ import Robot from "../assets/robot.json";
 import Smily from "../assets/smilyface.json";
 
 import { motion } from "framer-motion";
-import Tilt from "react-parallax-tilt";
+
 const GroupChat = () => {
   const user = useSelector((state) => state.Chat.user);
   return (
@@ -54,18 +53,26 @@ const GroupChat = () => {
         >
           <Lottie animationData={Smily} />
         </motion.div>
-          
 
-        <motion.div initial={{scale:0}} animate={{scale:.9}} transition={{delay:.2,duration:3,type:'spring',stiffness:300,damping: 18}} className="room--container border-2 " id={"group--room"}>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 0.9 }}
+          transition={{
+            delay: 0.2,
+            duration: 3,
+            type: "spring",
+            stiffness: 300,
+            damping: 18,
+          }}
+          className="room--container border-2 "
+          id={"group--room"}
+        >
           <SendMessages />
           <div></div>
           <DisplayMessages />
         </motion.div>
-          
       </div>
-      <div className="fixed bottom-10">
-        {/* <ImageUploader /> */}
-      </div>
+      <div className="fixed bottom-10"></div>
     </div>
   );
 };

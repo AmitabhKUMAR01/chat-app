@@ -2,7 +2,7 @@ import { Triangle } from "react-loader-spinner"
 
 const Loader = () => {
   return (
-    <div className="w-[100vw] h-[100vh] grid justify-center text-center items-center " style={{background:'rgba(1, 13, 23, 0.2)'}} >
+    <div className="w-[100vw] h-[100vh] grid justify-center text-center items-center " style={{background:' #031731 '}} >
         <Triangle
       height="80"
       width="80"
