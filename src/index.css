@@ -173,10 +173,10 @@ input[type="password"], input[type="email"], textarea,#pass,.logpass{
      
 }
 .one-onechat{
-  background-color: #00121f;
+  
   background-image: 
-      radial-gradient(at 47% 33%, hsl(162.31, 100%, 54%) 0, transparent 59%), 
-      radial-gradient(at 82% 65%, hsl(217.50, 0%, 0%) 0, transparent 55%);
+      radial-gradient(at 47% 33%, hsl(162, 76%, 69%) 0, transparent 59%), 
+      radial-gradient(at 82% 65%, hsl(209, 45%, 59%) 0, transparent 55%);
   
   
 }

@@ -50,7 +50,7 @@ const Home = () => {
             className="sm:text-3xl text-xl font-semibold  text-gray-900 "
             style={{ color: "#7620b3" }}
           >
-            Not your Average <br /> Messaging Application
+            Not your Average <br /> Messaging Web App
           </h1>
           <p className="sm:text-sm text-[.8rem] " style={{ color: "#404345" }}>
             Privacy-Driven Chat with Robust Encryption. Securely Connect and

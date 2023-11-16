@@ -20,7 +20,7 @@ const RegisterPage = () => {
     dispatch(RegisterUser(credentials));
   }
   if (user) {
-    navigate("/todos");
+    navigate("/chat");
   }
 
   const handleInputChange = (e) => {

@@ -7,7 +7,7 @@ import Lottie from "lottie-react";
 import phone from "../assets/smartphone.json";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
+import { AiFillEye, AiFillHome, AiTwotoneEyeInvisible } from "react-icons/ai";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
+      <Link to='/' className="absolute top-5 left-5 text-2xl text-rose-500 hover:text-black z-50"><AiFillHome/></Link>
       <Toaster />
       <motion.div
         initial={{ y: "-100vh", rotate: 380 }}
