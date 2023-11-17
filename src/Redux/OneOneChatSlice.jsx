@@ -46,6 +46,7 @@ const OneOneChatSlice = createSlice({
   initialState: {
     UsersList: [],
     Messages: [],
+    FilteredUserList:[],
     selectedUser: { id: "", username: "" },
     userDocumentId: null,
     groupUsers: [],
@@ -75,6 +76,12 @@ const OneOneChatSlice = createSlice({
       }
 
       console.log(state.groupUsers, "action group users");
+    },
+    SetFilteredUserList(state, action) {
+      state.FilteredUserList=state.UsersList.filter((item) =>
+    item.Username!==undefined?item.Username.toLowerCase().includes(action.payload.toLowerCase()):console.log('item -',item.Username)
+    
+  );
     },
     RemoveGroupUsers(state, action) {
       state.groupUsers = state.groupUsers.filter(
@@ -135,5 +142,6 @@ export const {
   RemoveMessages,
   SelectGroupUsers,
   RemoveGroupUsers,
+  SetFilteredUserList,
 } = OneOneChatSlice.actions;
 export default OneOneChatSlice.reducer;
