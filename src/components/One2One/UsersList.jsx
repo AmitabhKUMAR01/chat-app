@@ -28,7 +28,7 @@ const UserList = ({ select }) => {
   }, []);
 
   return (
-    <div className="right-0 ">
+    <div className="right-0  ">
       <button
         className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"
         onClick={() => setIsContactOpen((prev) => !prev)}
@@ -36,7 +36,7 @@ const UserList = ({ select }) => {
         {location.pathname === "/group" ? <MdGroupAdd /> : <BiSolidContact />}
       </button>
       <motion.div
-        className="p-2 absolute right-0"
+        className="p-2 absolute right-0 top-[5rem]"
         animate={isContactOpen ? "open" : "closed"}
         transition={{
           duration: 3.5,
