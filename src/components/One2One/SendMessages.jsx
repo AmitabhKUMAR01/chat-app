@@ -49,7 +49,7 @@ const SendMessages = () => {
     <div>
       <div className={`flex flex-col`}>
         {isUploadOpen?<ImageUploader type="message"/>:null}
-      <div className="flex border-2 space-x-0" style={{"background": "var(--mainBgColor)"}}>
+      <div className="flex  space-x-0" style={{"background": "var(--mainBgColor)"}}>
 
       <textarea
         required

@@ -41,7 +41,7 @@ const Sidebar = () => {
       >
         {click?<AiOutlineClose/>:<RxHamburgerMenu />}
       </motion.div>
-      <Tilt className={`border-2 ${click ? "block" : "hidden"} min-w-max`}>
+      <Tilt className={` ${click ? "block" : "hidden"} min-w-max`}>
 
       <motion.div
           className="w-[13rem] rounded-xl " style={{'background':'rgba(4, 17, 44, 1)'}}
