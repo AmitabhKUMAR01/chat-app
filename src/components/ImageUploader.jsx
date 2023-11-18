@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ID } from "appwrite";
-import { USER_PROFILE_BUCKET_ID, storage,databases,USER_COLLECTIONS ,DATABASES_ID,PROJECT_ID} from "../AppWrite/appwriteConfig";
+import { ID ,Permission,Role} from "appwrite";
+import { USER_PROFILE_BUCKET_ID,MESSAGE_IMAGE_BUCKET_ID,ONE_MESSAGE_COLLECTION, storage,databases,USER_COLLECTIONS ,DATABASES_ID,PROJECT_ID,} from "../AppWrite/appwriteConfig";
 import { getUsersList } from "../Redux/OneOneChatSlice";
-const ImageUploader = () => {
+import { AiOutlineCloudUpload } from "react-icons/ai";
+
+//type is used to distinguish between message image and profile image actions
+
+const ImageUploader = ({type}) => {
   const [file, setFile] = useState(null);
   const dispatch=useDispatch()
   const user = useSelector((state) => state.Chat.user);
+  const userId= useSelector((state)=>state.OneOne.selectedUser.id)
   const UsersList= useSelector((state)=>state.OneOne.UsersList)
   const [AllImages,setAllImages] = useState([]);
   const [user_Detail,setuser_Detail]= useState(null);
@@ -25,8 +30,7 @@ const ImageUploader = () => {
   // };
 
   useEffect(()=>{
-    // getAllImage();
-    // console.log('--------------------------------',AllImages)
+    
     
       dispatch(getUsersList());
       setTimeout(()=>{
@@ -37,16 +41,15 @@ const ImageUploader = () => {
       
   
   },[file])
-  // useEffect(() => {
-  //   if(UsersList!==undefined)setuser_Detail( UsersList.filter((User)=>user[0].$id===User.User_ID));
-  //     console.log('--------------------------------UserDetail',user_Detail);
-  // }, []);
+  
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
   };
-  const uploadImage = async (e) => {
+
+  // upload image to appwrite in profile section
+  const uploadImageProfile = async () => {
     if (user) {
       const newImage = await storage.createFile(
         USER_PROFILE_BUCKET_ID,
@@ -67,11 +70,52 @@ const ImageUploader = () => {
     }
   };
 
+  //// upload image to appwrite in message section
+  const uploadImageMessage = async () => {
+    // e.preventDefault();
+    if (user) {
+      const newImage = await storage.createFile(
+        MESSAGE_IMAGE_BUCKET_ID,
+        ID.unique(),
+        file
+      );
+      let payload = {
+        body: `https://cloud.appwrite.io/v1/storage/buckets/${MESSAGE_IMAGE_BUCKET_ID}/files/${newImage.$id}/view?project=${PROJECT_ID}&mode=admin`,
+        user_id: user[0].$id,
+        username: user[0].name,
+        receiver_id: userId,
+        unique_msg_01:userId+user[0].$id,
+        unique_msg_02:user[0].$id+userId
+      };
+      let permissions = [Permission.write(Role.user(user[0].$id))];
+      let promise = databases.createDocument(
+        DATABASES_ID,
+        ONE_MESSAGE_COLLECTION,
+        ID.unique(),
+        payload,
+        permissions
+        
+       );
+      console.log('user iiiid',user[0].$id);
+      console.log(newImage,'createdfdskjf oooh yeah',newImage.$userId);
+      setFile('')
+    } else {
+      console.log("something went wrong");
+    }
+  };
+
+  
   const handleUpload = async (e) => {
     e.preventDefault();
     if (file) {
       try {
-        uploadImage();
+        if(type==='profile')
+        {
+
+          uploadImageProfile();
+        }else if(type=='message'){
+          uploadImageMessage();
+        }
       } catch (error) {
         console.error("Error uploading file:", error);
       }
@@ -81,23 +125,18 @@ const ImageUploader = () => {
   };
 
   return (
-    <div>
+    <div className="z-50 absolute -top-4">
       <input
         type="file"
         accept="image/*"
+        className="border-none  max-w-min bg-blue-500"
         onChange={(e) => handleFileChange(e)}
       />
-      <button className="bg-red-500 ml-5" onClick={(e) => handleUpload(e)}>
-        Upload Image
+      <button className="bg-green-500 p-1 text-2xl hover:bg-green-800 ml-5 z-50" onClick={(e) => handleUpload(e)}>
+        <AiOutlineCloudUpload/>
       </button>
       <div>
-        {
-           AllImages.length!==0 && AllImages.map((img)=>(
-                <div key={img.$id} className="bg-red-500 p-5 border-2 w-[15rem] h">
-                        <img src={storage.getFilePreview(USER_PROFILE_BUCKET_ID, img.$id,100,100,'center')}  alt="none" />
-                </div> 
-            ))
-        }
+     
       </div>
     </div>
   );

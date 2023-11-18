@@ -7,7 +7,6 @@ import {
 } from "../../Redux/OneOneChatSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { BiSolidContact } from "react-icons/bi";
-import Loader from "../Loader";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { MdGroupAdd } from "react-icons/md";

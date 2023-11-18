@@ -4,6 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
 import client, {
   DATABASES_ID,
+  MESSAGE_IMAGE_BUCKET_ID,
   ONE_MESSAGE_COLLECTION,
 } from "../../AppWrite/appwriteConfig";
 import {
@@ -126,7 +127,7 @@ const DisplayMessages = () => {
                   }`}
                 >
                   <span></span>
-                  <span>{message.body}</span>
+                  <div>{message.body.includes(MESSAGE_IMAGE_BUCKET_ID)? <a href={message.body} target="blank"><img className="w-[5rem] " src={`${message.body}`} alt="image" /> </a> : message.body}</div>
                 </div>
               ) : null}
             </div>

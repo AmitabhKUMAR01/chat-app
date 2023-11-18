@@ -16,7 +16,7 @@ const Sidebar = () => {
   }, []);
   const variants = {
     open: { opacity: 1, x: 0, rotate: 0, y: 25 },
-    closed: { opacity: 0.5, x: "-100vw", rotate: 180 },
+    closed: { opacity: 0.5, x: "-100vw", rotate: 180,scale:0 },
   };
   const burger = {
     open: { rotate: 90 ,color: "red",scale:.9},
@@ -24,7 +24,7 @@ const Sidebar = () => {
   };
   return (
     <div
-      className={`absolute left-5  bg-transparent rounded-lg h-[100vh] z-50 w-[5rem]`}
+      className={`absolute left-5  bg-transparent rounded-lg ${click ? "h-[100vh]" : "h-[1rem"}  z-50 w-[5rem]`}
     >
       <motion.div
         onClick={() => setClick((prev) => !prev)}
@@ -41,7 +41,7 @@ const Sidebar = () => {
       >
         {click?<AiOutlineClose/>:<RxHamburgerMenu />}
       </motion.div>
-      <Tilt>
+      <Tilt className={`border-2 ${click ? "block" : "hidden"} min-w-max`}>
 
       <motion.div
           className="w-[13rem] rounded-xl " style={{'background':'rgba(4, 17, 44, 1)'}}

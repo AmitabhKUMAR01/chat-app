@@ -3,15 +3,17 @@ import {databases,DATABASES_ID,ONE_MESSAGE_COLLECTION} from '../../AppWrite/appw
 import { Role,Permission,ID } from 'appwrite';
 
 import { useDispatch,useSelector } from "react-redux";
+import ImageUploader from "../ImageUploader";
+import { AiOutlineUpload } from "react-icons/ai";
 
 const SendMessages = () => {
   
     const [messageBody, setMessageBody] = useState("");
     const [isRealTime,setIsRealTime] = useState(false)
+    const [isUploadOpen,setIsUploadOpen] = useState(false)
     const userId= useSelector((state)=>state.OneOne.selectedUser.id)
     const user = useSelector((state) => state.Chat.user);
-   
-        
+    
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,17 +47,24 @@ const SendMessages = () => {
     
   <form id="message--form" onSubmit={handleSubmit}>
     <div>
+      <div className={`flex flex-col`}>
+        {isUploadOpen?<ImageUploader type="message"/>:null}
+      <div className="flex border-2 space-x-0" style={{"background": "var(--mainBgColor)"}}>
+
       <textarea
         required
         maxLength={"1000"}
         placeholder="say something"
         onChange={(e) => setMessageBody(e.target.value)}
         value={messageBody}
-        className="h-[4rem]"
+        className="h-[4rem] border-2 "
       >
         {" "}
       </textarea>
+      <button className="text-2xl max-w-min hover:text-green-500 text-red-500 z-50 ml-20" onClick={()=>setIsUploadOpen(prev=>!prev)}><AiOutlineUpload/></button>
+      </div>
     </div>
+      </div>
     <div className="send-btn--wrapper">
         <div className="send-btn--wrapper">
             <button className="one-btn select-none" type="submit" >SEND</button>
