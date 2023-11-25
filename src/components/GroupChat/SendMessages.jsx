@@ -3,6 +3,8 @@ import {databases,DATABASES_ID,GROUP_MESSAGES_COLLECTION_ID} from '../../AppWrit
 import { Role,Permission,ID } from 'appwrite';
 
 import { useDispatch,useSelector } from "react-redux";
+import Textarea from "../CommonComponents/Textarea";
+import SubmitButton from "../CommonComponents/SubmitButton";
 
 const SendMessages = () => {
   
@@ -51,22 +53,9 @@ const SendMessages = () => {
     
   <form id="message--form" onSubmit={handleSubmit}>
     <div>
-      <textarea
-        required
-        maxLength={"1000"}
-        placeholder="say something"
-        onChange={(e) => setMessageBody(e.target.value)}
-        value={messageBody}
-        className="h-[4rem]"
-      >
-        {" "}
-      </textarea>
+    <Textarea value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
     </div>
-    <div className="send-btn--wrapper">
-        <div className="send-btn--wrapper">
-            <button className="one-btn select-none" type="submit" >SEND</button>
-          </div>
-    </div>
+    <SubmitButton/>
   </form>
   
   )

@@ -28,11 +28,11 @@ const OneToOneChat = () => {
           <TypeAnimation
             sequence={[
               // Same substring at the start will only be typed once, initially
-              "Welcome to Chat,",
-              3000,
-              "Have Fun, ",
+              "Welcome to Chat ",
+              
+              
               2000,
-              "Have Fun Chat ,",
+              "Welcome to Chatloom",
               1000,
             ]}
             speed={30}

@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Chat-Sidebar/Sidebar.jsx";
 import Loader from "../components/Loader.jsx";
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Chat = () => {
 
@@ -82,6 +83,7 @@ const Chat = () => {
           );
           console.log("A message was Deleted");
         }
+       
         console.log("i am the user ", user);
       }
     );
@@ -199,7 +201,7 @@ const Chat = () => {
               </div>
             ))
           ) : (
-            <Loader/>
+            <Skeleton count={10} width={'50vw'} height={'2rem'} className="mt-[2rem] ml-[2rem]" baseColor={'#35dd9d'}/>
           )}
         </div>
       </div>

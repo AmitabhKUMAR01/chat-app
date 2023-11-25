@@ -10,7 +10,7 @@ export const getGroupList= createAsyncThunk('getGroupList',async()=>{
           GROUP_LIST_COLLECTION_ID,
           [Query.orderDesc("$createdAt")]
         );
-        console.log("response =<< Group", response.documents);
+        // console.log("response =<< Group", response.documents);
         return response.documents;
       
 })
@@ -20,7 +20,7 @@ export const getMessages = createAsyncThunk('getMessages',async() =>{
         GROUP_MESSAGES_COLLECTION_ID,
         [Query.orderDesc("$createdAt")]
       );
-      console.log("response =<>?=>Group ", response.documents);
+    //   console.log("response =<>?=>Group ", response.documents);
       return response.documents;
 })
 

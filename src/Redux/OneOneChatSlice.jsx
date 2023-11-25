@@ -13,7 +13,7 @@ export const getUsersList = createAsyncThunk("getUsersList", async () => {
     USER_COLLECTIONS,
     [Query.orderDesc("$createdAt")]
   );
-  console.log("response =<< ", response.documents);
+  // console.log("response =<< ", response.documents);
   return response.documents;
 });
 

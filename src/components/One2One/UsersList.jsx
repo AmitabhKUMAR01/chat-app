@@ -1,4 +1,3 @@
-// UserList.js
 import { useState, useEffect } from "react";
 import {
   getUsersList,
@@ -15,7 +14,9 @@ const UserList = ({ select }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const UsersList = useSelector((state) => state.OneOne.UsersList);
-  const FilteredUserList = useSelector((state) => state.OneOne.FilteredUserList);
+  const FilteredUserList = useSelector(
+    (state) => state.OneOne.FilteredUserList
+  );
   const [isContactOpen, setIsContactOpen] = useState(false);
   const user = useSelector((state) => state.Chat.user);
   const variants = {
@@ -24,12 +25,14 @@ const UserList = ({ select }) => {
   };
   useEffect(() => {
     dispatch(getUsersList());
+    dispatch(SelectUser({ id: 0, username: "none" }));
+    
   }, []);
 
   return (
     <div className="right-0  ">
       <button
-        className="absolute sm:right-20 right-0  text-3xl hover:text-green-500"
+        className="absolute sm:right-20 right-0 text-black  text-3xl hover:text-green-500"
         onClick={() => setIsContactOpen((prev) => !prev)}
       >
         {location.pathname === "/group" ? <MdGroupAdd /> : <BiSolidContact />}
@@ -47,10 +50,10 @@ const UserList = ({ select }) => {
       >
         {isContactOpen && UsersList.length !== 0 ? (
           <div
-          style={{ background: "rgba(4, 17, 44, 1)" }}
-          className="absolute   right-0 w-[12rem]  h-[30vh] overflow-scroll p-[.5rem] rounded-md"
+            style={{ background: "rgba(4, 17, 44, 1)" }}
+            className="absolute   right-0 w-[12rem]  h-[30vh] overflow-scroll p-[.5rem] rounded-md"
           >
-            <SearchSelect/>
+            <SearchSelect />
             {FilteredUserList.map((User) => (
               <div
                 onClick={() => {
@@ -71,7 +74,6 @@ const UserList = ({ select }) => {
                 className="cursor-pointer hover:text-red-500"
                 key={User.User_ID}
               >
-
                 {user[0].$id !== User.User_ID ? (
                   <div className="flex text-center items-center py-[1rem]">
                     <img

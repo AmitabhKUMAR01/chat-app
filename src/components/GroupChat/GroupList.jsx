@@ -20,6 +20,7 @@ const GroupList = () => {
     };
     useEffect(()=>{
         dispatch(getGroupList());
+        dispatch(SelectGroup({id:0,groupname:'none'	}))
         console.log(' i have been called',GroupList);
     },[])
     

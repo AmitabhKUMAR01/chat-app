@@ -5,6 +5,8 @@ import { Role,Permission,ID } from 'appwrite';
 import { useDispatch,useSelector } from "react-redux";
 import ImageUploader from "../ImageUploader";
 import { AiOutlineUpload } from "react-icons/ai";
+import Textarea from "../CommonComponents/Textarea";
+import SubmitButton from "../CommonComponents/SubmitButton";
 
 const SendMessages = () => {
   
@@ -51,25 +53,12 @@ const SendMessages = () => {
         {isUploadOpen?<ImageUploader type="message"/>:null}
       <div className="flex  space-x-0" style={{"background": "var(--mainBgColor)"}}>
 
-      <textarea
-        required
-        maxLength={"1000"}
-        placeholder="say something"
-        onChange={(e) => setMessageBody(e.target.value)}
-        value={messageBody}
-        className="h-[4rem] border-2 "
-      >
-        {" "}
-      </textarea>
+      <Textarea value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
       <button className="text-2xl max-w-min hover:text-green-500 text-red-500 z-50 ml-20" onClick={()=>setIsUploadOpen(prev=>!prev)}><AiOutlineUpload/></button>
       </div>
     </div>
       </div>
-    <div className="send-btn--wrapper">
-        <div className="send-btn--wrapper">
-            <button className="one-btn select-none" type="submit" >SEND</button>
-          </div>
-    </div>
+ <SubmitButton/>
   </form>
   
   )

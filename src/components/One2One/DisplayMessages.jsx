@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
+import { useLocation } from "react-router-dom";
 import client, {
   DATABASES_ID,
   MESSAGE_IMAGE_BUCKET_ID,
@@ -15,9 +16,10 @@ import {
 import { InfinitySpin } from "react-loader-spinner";
 
 
+
 const DisplayMessages = () => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
   const Messages = useSelector((state) => state.OneOne.Messages);
   const user = useSelector((state) => state.Chat.user);
@@ -25,9 +27,12 @@ const DisplayMessages = () => {
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
   const [MMessages, setMMessages] = useState([]);
-
+  
+  
   useEffect(() => {
     setMMessages(Messages);
+    dispatch(getMessages());
+    console.log("i am being called ",location.pathname);
   }, [userId]);
 
   const handleDoubleClick = (message) => {
@@ -61,6 +66,8 @@ const DisplayMessages = () => {
           );
           console.log("A message was Deleted");
         }
+      
+        
         console.log("i am the user ", user);
       }
     );
@@ -135,7 +142,7 @@ const DisplayMessages = () => {
         ) : (
           <div className="absolute z-50 top-[40%] sm:left-[35%] left-[20%] text-center">
             <InfinitySpin width="200" color="#4fa94d" />
-            <h1 className="bg-green-500 ">Choose Your Chat</h1>
+            <h1 className="bg-green-500 " >Choose Your Chat  from </h1>
           </div>
         )}
       </div>
