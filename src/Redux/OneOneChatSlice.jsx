@@ -79,7 +79,7 @@ const OneOneChatSlice = createSlice({
     },
     SetFilteredUserList(state, action) {
       state.FilteredUserList=state.UsersList.filter((item) =>
-    item.Username!==undefined?item.Username.toLowerCase().includes(action.payload.toLowerCase()):console.log('item -',item.Username)
+    item.Username!==undefined && item.unque_name!==null?item.Username.toLowerCase().includes(action.payload.toLowerCase())||item.unque_name.toLowerCase().includes(action.payload.toLowerCase()):console.log('item -',item.Username)
     
   );
     },

@@ -82,7 +82,13 @@ const UserList = ({ select }) => {
                       alt="profile"
                       className="w-[2rem]  border-[2px] border-black rounded-full "
                     />
-                    <h1>{User.Username}</h1>
+                    <div className="flex flex-col text-left ml-2">
+                      <h1>{User.Username}</h1>
+                      <p className="text-[.7rem]  text-gray-300">{User.unque_name}</p>
+                    </div>
+                    
+                    
+                    
                   </div>
                 ) : null}
               </div>

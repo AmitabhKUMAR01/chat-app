@@ -35,6 +35,7 @@ export const RegisterUser = createAsyncThunk(
       User_ID: accountDetails.$id,
       Username: accountDetails.name,
       Email: accountDetails.email,
+      unque_name: `@${accountDetails.email.split('@')[0]}`,
     };
     let permissions = [Permission.write(Role.user(accountDetails.$id))];
     let res= await databases.createDocument(
