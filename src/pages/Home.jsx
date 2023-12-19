@@ -20,28 +20,11 @@ const Home = () => {
   return (
     <div className="bg- min-h-[100vh] z-0 ">
       <div className="navbar">
-        <div className="flex h-[5vh] w-[90vw] items-center m-auto text-gray-900 capitalize sm:text-sm text-[.6rem]  z-0 justify-around">
+        <div className="h-[5vh] w-[90vw] items-left m-auto text-gray-900 capitalize sm:text-sm text-[.6rem]  z-0 justify-around">
             <span>
               <img className="w-[5rem] " src={logo} alt="" />
             </span>
-          <ul
-            className="flex justify-around w-[60%] "
-            
-          >
-            <li className="hover:scale-110 hover:text-violet-500">
-              <Link to={"/chat"}>feature</Link>
-            </li>
-            <li className="hover:scale-110 hover:text-violet-500">
-              <Link to={"/one"}>contact</Link>
-            </li>
-            <li className="hover:scale-110 hover:text-violet-500">
-              <Link to={"/login"}>Login</Link>
-            </li>
-            <li className="hover:scale-110 hover:text-violet-500">
-              <Link to={"/register"}>Register</Link>
-            </li>
-            
-          </ul>
+         
         </div>
       </div>
       <div className="flex sm:flex-row flex-col-reverse w-[90%] justify-center h-[80vh] sm:mt-0 mt-[4rem]  items-center m-auto">
@@ -90,6 +73,7 @@ const Home = () => {
         <BottomSection/>
      
     </div>
+
   );
 };
 

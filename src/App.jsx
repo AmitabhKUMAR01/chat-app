@@ -10,6 +10,7 @@ import OneToOneChat from './pages/OneToOneChat';
 import GroupChat from './pages/GroupChat';
 
 import UploadImages from './pages/UploadImages';
+import LocalStorageHandle from './components/LocalStorage/LocalStorage';
 const App = () => {
   return (
     <Routes>
@@ -24,6 +25,7 @@ const App = () => {
       </Route>  
       <Route path='/login' element={<LoginPage/>} />
       <Route path='/register' element={<Register/>} />
+      <Route path='/loc' element={<LocalStorageHandle/>} />
       
     </Routes>
   )

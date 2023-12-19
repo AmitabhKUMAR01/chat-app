@@ -125,7 +125,7 @@ const ImageUploader = ({type}) => {
   };
 
   return (
-    <div className="z-50 absolute -top-4">
+    <div className=" ">
       <input
         type="file"
         accept="image/*"

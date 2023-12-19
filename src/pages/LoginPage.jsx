@@ -12,7 +12,7 @@ import { AiFillEye, AiFillHome, AiTwotoneEyeInvisible } from "react-icons/ai";
 const LoginPage = () => {
   const dispatch = useDispatch();
 
-  const errorNotify = () => toast.error("Error ");
+  const errorNotify = (error) => toast.error(error || "something went wrong");
 
   const user = useSelector((state) => state.Chat.user);
   const isLoading = useSelector((state) => state.Chat.isLoading);
@@ -27,9 +27,24 @@ const LoginPage = () => {
     console.log("i am authenticated", user);
 
     if (user) {
-      navigate("/chat");
+      navigate("/one");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    SaveToLocal();
+  }, []);
+
+  const SaveToLocal = () => {
+    const storedEmail = localStorage.getItem("myEmail");
+    const storedPassword = localStorage.getItem("myPassword");
+
+    console.log("ioioi", storedEmail);
+    if ((storedEmail, storedPassword)) {
+      dispatch(LoginUser({ email: storedEmail, password: storedPassword }));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
@@ -38,17 +53,23 @@ const LoginPage = () => {
 
   const submitFom = (e) => {
     e.preventDefault();
+    localStorage.setItem("myPassword", credentials.password);
+    localStorage.setItem("myEmail", credentials.email);
     dispatch(LoginUser(credentials)).then((res) => {
-      console.log(res, "llllog in");
       if (res.type === "LoginUser/rejected") {
-        errorNotify();
+        errorNotify("Login failed");
       }
     });
   };
 
   return (
     <div className="flex items-center sm:gap-5 sm:flex-row flex-col  ">
-      <Link to='/' className="absolute top-5 left-5 text-2xl text-rose-500 hover:text-black z-50"><AiFillHome/></Link>
+      <Link
+        to="/"
+        className="absolute top-5 left-5 text-2xl text-rose-500 hover:text-black z-50"
+      >
+        <AiFillHome />
+      </Link>
       <Toaster />
       <motion.div
         initial={{ y: "-100vh", rotate: 380 }}
@@ -111,7 +132,15 @@ const LoginPage = () => {
                 />
               </div>
             </form>
-            <h1 className="text-gray-700 cursor-none">Don't have account ? <Link to={'/register'} className="text-rose-500 hover:opacity-90 hover:text-black font-semibold text-xl">register </Link> </h1>
+            <h1 className="text-gray-700 cursor-none">
+              Don't have account ?{" "}
+              <Link
+                to={"/register"}
+                className="text-rose-500 hover:opacity-90 hover:text-black font-semibold text-xl"
+              >
+                register{" "}
+              </Link>{" "}
+            </h1>
           </div>
         ) : (
           <Loader />

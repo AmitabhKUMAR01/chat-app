@@ -68,7 +68,7 @@ const Sidebar = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Link className="mb-3 " to={"/one"}>
-                One to One Chat
+                Chat
               </Link>
             </motion.li>
             <motion.li
@@ -79,7 +79,14 @@ const Sidebar = () => {
                 Group Chat
               </Link>
             </motion.li>
-
+        <motion.li
+              whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link className="mb-3 " to={"/chat"}>
+                Random Chat
+              </Link>
+            </motion.li>
             <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -93,7 +100,7 @@ const Sidebar = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Link className="mb-3 " to={"/login"}>
-                Login
+                Logout
               </Link>
             </motion.li>
             <motion.li
@@ -104,14 +111,7 @@ const Sidebar = () => {
                 Register
               </Link>
             </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Link className="mb-3 " to={"/chat"}>
-                Chat
-              </Link>
-            </motion.li>
+
 
             <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
@@ -119,7 +119,7 @@ const Sidebar = () => {
             >
               <Link className="mb-3" to={"/img"}>
                 upload image
-              </Link>
+                </Link>
             </motion.li>
           </ul>
         </motion.div>

@@ -20,7 +20,7 @@ const RegisterPage = () => {
     dispatch(RegisterUser(credentials));
   }
   if (user) {
-    navigate("/chat");
+    navigate("/img");
   }
 
   const handleInputChange = (e) => {

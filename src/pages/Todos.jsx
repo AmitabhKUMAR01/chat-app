@@ -146,7 +146,7 @@ const Todos = () => {
   }, [user, completed, isEditable]);
 
   return (
-    <div className="bg-green-300 min-h-[100vh] w-[100vw] grid justify-center overflow-x-hidden bg-gradient-to-tr from-pink-500 to-indigo-800 ">
+    <div className="bg-green-300 min-h-[100vh] w-[100vw] grid justify-center overflow-x-hidden ">
       <div className=" sm:w-[70vw]  w-[90vw] sm:h-[10rem] h-[5rem] flex justify-between sm:mt-8 mt-5 items-center text-center mx-2">
         <form className="flex sm:min-w-full  sm:p-0 p-5">
           <input
@@ -164,7 +164,7 @@ const Todos = () => {
             <AiOutlinePlus />
           </button>
         </form>
-          {/* <div className="min-w-[10rem] flex text-left text-4xl border-2"></div> */}
+        {/* <div className="min-w-[10rem] flex text-left text-4xl border-2"></div> */}
       </div>
       <div className="w-[90vw] overflow-x-hidden  items-center justify-center">
         {messages.length !== 0 &&
@@ -173,19 +173,19 @@ const Todos = () => {
               user[0].$id === todo.user_id && (
                 <ul
                   key={i}
-                  className="sm:flex  sm:space-x-2  sm:py-6 py-4 my-3  sm:m-4 font-semibold text-sky-600 bg-emerald-400 sm:px-24 px-5  rounded-md bg-gradient-to-r from-slate-900 to-slate-700  hover:from-red-600 hover:to-violet-700 w-[90vw]"
+                  className="sm:flex  sm:space-x-2  sm:py-6 py-4 my-3  sm:m-4 font-semibold text-sky-600 bg-emerald-400 sm:px-24 px-5  rounded-md bg-gradient-to-r from-slate-900 to-slate-700   w-[90vw]"
                 >
                   {todo.isEditable ? (
                     <li className="flex  flex-col sm:flex-row space-y-3 ">
                       <input
                         type="text"
-                        className="sm:w-[20rem] rounded-full pl-2 sm:px-[1rem] sm:mx-10 hover:bg-violet-600 hover:text-white  outline-0 hover:scale-105 duration-1000 transition-all "
+                        className="sm:w-[20rem] rounded-full pl-2 sm:px-[1rem] sm:mx-10 outline-0 duration-1000 transition-all "
                         value={editText}
                         placeholder={todo.text}
                         onChange={(e) => setEditText(e.target.value)}
                       />
                       <button
-                        className="bg-red-500 sm:px-9 px-3 text-start text-2xl py-1  w-[3rem] rounded-xl hover:bg-violet-600 active:bg-violet-700 hover:scale-x-90 text-white  duration-1000  focus:outline-none focus:ring focus:ring-violet-300  font-bold"
+                        className=" px-4 w-min   bg-white rounded-md  hover:scale-125 duration-1000 transition-all"
                         onClick={() => saveEdit(todo)}
                       >
                         <AiOutlineCheck />
@@ -209,13 +209,13 @@ const Todos = () => {
                     </li>
                   )}
                   <button
-                    className=" sm:px-9 p-1  rounded-xl bg-white active:bg-violet-700 hover:scale-x-90  font-semibold duration-700 focus:outline-none focus:ring focus:ring-violet-300 text-red-500"
+                    className="sm:px-9 sm:py-2 p-1  rounded-xl bg-white active:bg-violet-700 hover:scale-x-90  font-semibold duration-700 focus:outline-none focus:ring focus:ring-violet-300 text-red-500"
                     onClick={() => handleDelete(todo.$id)}
                   >
                     <AiFillDelete />
                   </button>
                   <button
-                    className=" sm:px-9 p-1 ml-4 mt-2 rounded-xl  bg-white text-red-500 active:bg-violet-700 hover:scale-x-90 font-semibold duration-700 focus:outline-none focus:ring focus:ring-violet-300 "
+                    className=" sm:px-9 sm:py-2 p-1 ml-4  rounded-xl  bg-white text-red-500 active:bg-violet-700 hover:scale-x-90 font-semibold duration-700 focus:outline-none focus:ring focus:ring-violet-300 "
                     onClick={() => handleEdit(todo, todo.isEditable)}
                   >
                     <FiEdit2 />
