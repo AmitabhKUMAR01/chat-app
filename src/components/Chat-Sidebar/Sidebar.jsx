@@ -5,14 +5,23 @@ import CreateGroup from "../GroupChat/CreateGroup";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { AiOutlineClose } from "react-icons/ai";
-
+import { LogoutUser } from "../../Redux/ChatSlice"
+import { useDispatch } from "react-redux";
 const Sidebar = () => {
   const [click, setClick] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
+  
+  const HandleLogOut=()=>{
 
-  useEffect(() => {
-    console.log("my location", location.pathname);
-  }, []);
+    dispatch(LogoutUser());
+    localStorage.setItem("myPassword", null);
+    localStorage.setItem("myEmail", null);
+    
+
+  
+  }
+
   const variants = {
     open: { opacity: 1, x: 0, rotate: 0, y: 25 },
     closed: { opacity: 0.5, x: "-100vw", rotate: 180, scale: 0 },
@@ -99,7 +108,7 @@ const Sidebar = () => {
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Link className="mb-3 " to={"/login"}>
+              <Link className="mb-3 " onClick={HandleLogOut} to={"/login"}>
                 Logout
               </Link>
             </motion.li>

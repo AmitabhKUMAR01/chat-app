@@ -27,6 +27,7 @@ const LoginPage = () => {
     console.log("i am authenticated", user);
 
     if (user) {
+      
       navigate("/one");
     }
   }, [user, navigate]);
@@ -72,9 +73,9 @@ const LoginPage = () => {
       </Link>
       <Toaster />
       <motion.div
-        initial={{ y: "-100vh", rotate: 380 }}
+        initial={{ y: "-100vh", rotate: 90 }}
         animate={{ y: 0, rotate: 0 }}
-        transition={{ type: "spring", stiffness: 80, delay: 0.1, duration: 5 }}
+        transition={{ type: "spring", stiffness: 100, delay: 1, duration: 5 }}
         className={`sm:w-[30vw] sm:h[40vh] ${isLoading ? "hidden" : "block"}`}
       >
         <Lottie animationData={phone} />
@@ -85,7 +86,7 @@ const LoginPage = () => {
         transition={{
           type: "spring",
           stiffness: 100,
-          delay: 0.2,
+          delay: .5,
           duration: 0.7,
         }}
         className="flex justify-center items-center max-w-full h-[100vh]  sm:mt-0 mt-[-5rem]  "

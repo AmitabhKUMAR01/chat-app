@@ -3,7 +3,7 @@ import client, {
   DATABASES_ID,
   COLLECTIONS_ID_MESSAGE,
 } from "../AppWrite/appwriteConfig.js";
-import { AiFillDelete, AiFillDownSquare } from "react-icons/ai";
+import { AiFillDelete} from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { ID, Query, Role, Permission } from "appwrite";
 import { useNavigate } from "react-router-dom";
@@ -209,7 +209,7 @@ const Chat = () => {
                 width={"50vw"}
                 height={"2rem"}
                 className="mt-[2rem] ml-[2rem]"
-                baseColor={"#35dd9d"}
+                baseColor={"#d9d9d9"}
               />
             )}
           </div>

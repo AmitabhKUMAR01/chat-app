@@ -6,7 +6,7 @@ import { DATABASES_ID,USER_COLLECTIONS } from "../AppWrite/appwriteConfig";
 export const LoginUser = createAsyncThunk("LoginUser", async (credentials) => {
   await account.createEmailSession(credentials.email, credentials.password);
   const accountDetails = await account.get();
-  // console.log('logini successful',state.user[0].name)
+  // console.log('logini successful',user[0])
   console.log("user created thunk", accountDetails);
   return accountDetails;
 });
@@ -50,6 +50,11 @@ export const RegisterUser = createAsyncThunk(
     return accountDetails;
   }
 );
+export const  LogoutUser=createAsyncThunk('LogoutUser',async function(){
+  
+     account.deleteSessions();
+
+})
 
 
 const ChatSlice = createSlice({
@@ -86,6 +91,9 @@ const ChatSlice = createSlice({
       console.log("Errororoor -------> ", action.payload);
       state.isLoading = false;
     });
+    builder.addCase(LogoutUser.fulfilled, (state, action) => {
+      state.user= null;
+    })
   },
 });
 

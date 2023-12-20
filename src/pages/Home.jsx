@@ -47,12 +47,13 @@ const Home = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, x: "100vw" }}
-          animate={{ opacity: 0.8, x: 0 }}
+          initial={{ opacity: 0, x: "30vw" }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{
             type: "spring",
             stiffness: 300,
-            duration: 6,
+            duration: 20,
+            delay:.6,
             repeatType: "reverse",
           }}
           whileHover={{ scale: 1.2 }}

@@ -2,16 +2,23 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
-import { useLocation } from "react-router-dom";
-import client, {  DATABASES_ID,  MESSAGE_IMAGE_BUCKET_ID,  ONE_MESSAGE_COLLECTION,
+
+import client, {
+  DATABASES_ID,
+  MESSAGE_IMAGE_BUCKET_ID,
+  ONE_MESSAGE_COLLECTION,
 } from "../../AppWrite/appwriteConfig";
 import {
-  RemoveMessages,  SetMessages,  getMessages,} from "../../Redux/OneOneChatSlice";
-import { InfinitySpin } from "react-loader-spinner";
+  RemoveMessages,
+  SetMessages,
+  getMessages,
+} from "../../Redux/OneOneChatSlice";
+import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "react-loading-skeleton";
 
 const DisplayMessages = () => {
+
   const dispatch = useDispatch();
-  const location = useLocation();
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
   const Messages = useSelector((state) => state.OneOne.Messages);
   const user = useSelector((state) => state.Chat.user);
@@ -65,7 +72,7 @@ const DisplayMessages = () => {
 
   return (
     <>
-      <div className="messages">
+      <div className="messages cursor-pointer">
         {MMessages.length !== 0 ? (
           MMessages.map((message) => (
             <div
@@ -134,10 +141,13 @@ const DisplayMessages = () => {
             </div>
           ))
         ) : (
-          <div className="absolute z-50 top-[40%] sm:left-[35%] left-[20%] text-center">
-            <InfinitySpin width="200" color="#4fa94d" />
-            <h1 className="bg-green-500 ">Choose Your Chat from </h1>
-          </div>
+          <Skeleton
+            count={10}
+            width={"50vw"}
+            height={"1.4rem"}
+            className="mt-[1.4rem] ml-[2rem]"
+            baseColor={"#d9d9d9"}
+          />
         )}
       </div>
     </>

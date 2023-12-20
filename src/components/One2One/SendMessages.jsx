@@ -1,8 +1,7 @@
 import { useState } from "react";
 import {databases,DATABASES_ID,ONE_MESSAGE_COLLECTION} from '../../AppWrite/appwriteConfig'
 import { Role,Permission,ID } from 'appwrite';
-
-import { useDispatch,useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ImageUploader from "../ImageUploader";
 import { AiOutlineUpload } from "react-icons/ai";
 import Textarea from "../CommonComponents/Textarea";
