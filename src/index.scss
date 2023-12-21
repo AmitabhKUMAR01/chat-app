@@ -22,7 +22,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
   z-index: 1;
-  /* border: 1px solid red; */
+  //  border: 1px solid red; 
   scroll-behavior: smooth;
   }
 
@@ -93,7 +93,7 @@ body{
 
 /* input[type="text"],  */
 
-
+/* 
 input[type="password"], input[type="email"], textarea,#pass,.logpass{
   background: var(--mainBgColor);
   border: none;
@@ -105,7 +105,7 @@ input[type="password"], input[type="email"], textarea,#pass,.logpass{
   outline: none;
   font-size: 18px;
   text-shadow: none !important;
-}
+} */
 .logpass{
   padding: 0;
 }
@@ -262,31 +262,42 @@ input[type="password"], input[type="email"], textarea,#pass,.logpass{
   color: var(--textColorSecondary);
   background-color: var(--themeColorMain);
   /* max-width: 40%; Adjust the max-width as needed */
+  display: flex;
+
+ max-width: 11.5rem;
   width: fit-content;
+  min-height: 5rem;
+  align-items: center;
+  margin-left: 1rem;
   word-wrap: break-word;
   position: relative;
-  box-shadow: -1px -1px 3px rgb(10, 255, 149);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(17, 25, 40, 0.75);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+border-radius: 11px;
+background: linear-gradient(225deg, #5975ff, #4b62e5);
+box-shadow:  -7px 7px 14px #212c66,
+             7px -7px 14px #85aeff;
+
+
+ 
 }
+
 
 
 .message--body--owner {
   border-bottom: 1px solid wheat;
-  box-shadow: 1px 1px 1px rgb(2, 125, 55);
-  font-weight: 700;
-  
-  /* background-color: #030e13;
-  background-image: 
-      radial-gradient(at 47% 33%, hsl(261.87, 100%, 18%) 0, transparent 59%), 
-      radial-gradient(at 82% 65%, hsl(274.05, 100%, 21%) 0, transparent 55%); */
-      background: white;
+  border-radius: 11px;
+background: #ffffff;
+box-shadow:  -5px 5px 10px #9ec7fe,
+            inset 5px -5px 10px #ffffff;
       color: #386fd2;
-
-  padding: .2rem;
+display: flex;
+padding:0 .5rem ;
+ width: fit-content;
+ max-width: 11.5rem;
+  min-height: 5rem;
+  align-items: center;
+  margin-left: 1rem;
+  word-wrap: break-word;
+  
   border-radius: 10px;
   align-self: flex-end; /* Align user messages to the right */
 }

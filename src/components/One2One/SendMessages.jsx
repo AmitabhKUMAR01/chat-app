@@ -6,7 +6,7 @@ import ImageUploader from "../ImageUploader";
 import { AiOutlineUpload } from "react-icons/ai";
 import Textarea from "../CommonComponents/Textarea";
 import SubmitButton from "../CommonComponents/SubmitButton";
-
+import '../../Sass/OneoneChat.scss'
 const SendMessages = () => {
   
     const [messageBody, setMessageBody] = useState("");
@@ -50,9 +50,9 @@ const SendMessages = () => {
     <div>
       <div className={`flex flex-col`}>
         {isUploadOpen?<ImageUploader type="message"/>:null}
-      <div className="flex  space-x-0" style={{"background": "var(--mainBgColor)"}}>
+      <div className="flex  space-x-0" >
 
-      <Textarea value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
+      <input type='text' placeholder='say something...' className="one-one-input" value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
       <button className="text-2xl max-w-min hover:text-green-500 text-red-500 z-50 ml-20" onClick={()=>setIsUploadOpen(prev=>!prev)}><AiOutlineUpload/></button>
       </div>
     </div>

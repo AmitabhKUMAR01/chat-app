@@ -64,7 +64,7 @@ const Sidebar = () => {
           }}
           variants={variants}
         >
-          <ul className=" p-6 m-3 transition-all  duration-1000 font-xl ">
+          <ul className=" p-6 m-3 transition-all  duration-1000 font-xl text-left ">
             <motion.li
               whileHover={{ originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}

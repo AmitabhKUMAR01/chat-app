@@ -7,7 +7,7 @@ import DisplayMessages from "../components/One2One/DisplayMessages";
 import SendMessages from "../components/One2One/SendMessages";
 import Lottie from "lottie-react";
 import Robot from "../assets/robot.json";
-
+import '../Sass/OneoneChat.scss'
 
 const OneToOneChat = () => {
   const navigate = useNavigate();
@@ -16,29 +16,9 @@ const OneToOneChat = () => {
   if (!user) return navigate("/login");
 
   return (
-    <div className="one-onechat ">
-      <div className="h-[5rem] pt-5">
-        <Sidebar />
-
-        <UserList select="user" />
-      </div>
-      {/* <ImageUploader/> */}
-      <div className="container">
-        <div className="w-[100vw] absolute text-center   left-0 text-xl flex px-2 justify-center top-12 text-black font-semibold  ">
-          <TypeAnimation
-            sequence={[
-              // Same substring at the start will only be typed once, initially
-              "Welcome to Chat ",
-              
-              
-              2000,
-              "Welcome to Chatloom",
-              1000,
-            ]}
-            speed={30}
-            style={{ fontSize: "1rem" }}
-            repeat={Infinity}
-          />{" "}
+    <div className="One-One-Container">
+      <div className="w-[100vw] text-center   left-0 text-xl flex  justify-center  text-black font-semibold  ">
+         <h3>welcome </h3>
           <span></span>
           {user && (
             <span className="text-rose-700 capitalize ml-4 ">
@@ -46,10 +26,18 @@ const OneToOneChat = () => {
             </span>
           )}
         </div>
+      <div className="h-[5rem] border-black flex justify-evenly px-5  w-[100vw] " >
+        <Sidebar />
+            
+        <UserList select="user" />
+      </div>
+      
+      <div className="  ">
+        
         <div className="sm:w-[15rem] w-[8rem] absolute sm:left-[15%] right-[14%] top-[-5%]">
           <Lottie animationData={Robot} />
         </div>
-        <div className="room--container">
+        <div className="one-one-Hero ">
           <SendMessages />
           <div></div>
           <DisplayMessages />

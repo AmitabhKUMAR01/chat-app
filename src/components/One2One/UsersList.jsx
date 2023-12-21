@@ -17,7 +17,7 @@ const UserList = ({ select }) => {
   const FilteredUserList = useSelector(
     (state) => state.OneOne.FilteredUserList
   );
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(true);
   const user = useSelector((state) => state.Chat.user);
   const variants = {
     open: { scale: 1, y: 30, x: -20 },
@@ -30,18 +30,17 @@ const UserList = ({ select }) => {
   }, []);
 
   return (
-    <div className="right-0  ">
+    <div className=" z-50  ml-[80vw] ">
       <button
-        className="absolute sm:right-20 right-0 text-black  text-3xl hover:text-green-500"
+        className="user-list-btn    p-2 rounded-full  text-3xl"
         onClick={() => setIsContactOpen((prev) => !prev)}
       >
         {location.pathname === "/group" ? <MdGroupAdd /> : <BiSolidContact />}
       </button>
       <motion.div
-        className="p-2 absolute right-0 top-[5rem]"
+        className="p-2 absolute right-0  top-[5rem]"
         animate={isContactOpen ? "open" : "closed"}
         transition={{
-          duration: 3.5,
           delay: 0.1,
           type: "spring",
           stiffness: 100,
@@ -51,7 +50,7 @@ const UserList = ({ select }) => {
         {isContactOpen && UsersList.length !== 0 ? (
           <div
             style={{ background: "rgba(4, 17, 44, 1)" }}
-            className="absolute   right-0 w-[12rem]  h-[30vh] overflow-scroll p-[.5rem] rounded-md"
+            className="user-list-card absolute   right-0 w-[12rem]  h-[40vh] overflow-scroll p-[.5rem] rounded-md"
           >
             <SearchSelect />
             {FilteredUserList.map((User) => (

@@ -1,0 +1,118 @@
+.One-One-Container{
+background-color: white;
+height: 120vh;
+
+}
+.one-one-Hero{
+    border-radius: 58px;
+    background: linear-gradient(225deg, #e6e6e6, #ffffff);
+    box-shadow:  -19px 19px 38px #828282,
+                 19px -19px 38px #ffffff;
+
+    width: 30vw;
+    height: 90vh;
+    
+    padding: 2rem;
+    margin: 2rem auto;
+    margin-top: 1rem;
+}
+.one-one-input{
+    
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        padding: 1em;
+        background-color: #ccc;
+        box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+        transition: 300ms ease-in-out;
+        color: black;
+        width: 100%;
+      &:focus {
+        background-color: white;
+        transform: scale(1.05);
+        
+      }
+}
+.one-one-btn{
+    
+        display: grid;
+        place-items: center;
+        background: #e3edf7;
+        padding: .7rem;
+        border-radius: 10px;
+        box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                -6px -6px 10px -1px rgba(255,255,255,0.7);
+        border: 1px solid rgba(0,0,0,0);
+        cursor: pointer;
+        transition: transform 0.5s;
+        width: 5rem;
+        
+        
+        
+        
+      
+      &:hover {
+        box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+                -0.5px -0.5px 0px rgba(255,255,255,1),
+                0.5px 0.5px 0px rgba(0,0,0,0.15),
+                0px 12px 10px -10px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.1);
+        transform: scale(1.1);
+    }
+    span {
+        transition: transform 0.5s;
+        color: rgb(101, 152, 235);
+        &:hover  {
+            transform: scale(0.9);
+            color: #333333;
+     }
+      
+}
+
+
+}
+@media only screen and  (max-width: 767px){
+    .one-one-Hero{
+        width: 80vw;
+    }
+}
+.user-list-btn{
+    
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: #7e97b8;
+        background-color: #e0e8ef;
+        border-style: solid;
+        border-width: 2px 2px 2px 2px;
+        border-color: rgba(255, 255, 255, 0.333);
+        border-radius: 40px 40px 40px 40px;
+        padding: 16px 24px 16px 28px;
+        transform: translate(0px, 0px) rotate(0deg);
+        transition: 0.2s;
+        box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
+       
+       &:hover {
+        color: #516d91;
+        background-color: #E5EDF5;
+        box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+       }
+       
+       &:active {
+        box-shadow: none;
+       }
+}
+.user-list-card{
+    border-radius: 21px;
+background: linear-gradient(225deg, #040f28, #04122f);
+box-shadow:  -7px 7px 14px #d0dfff,
+             7px -7px 14px #91a7d2;
+}

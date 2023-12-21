@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
-
+import { RiChatSmile2Fill } from "react-icons/ri";
+import {motion} from 'framer-motion'
 import client, {
   DATABASES_ID,
   MESSAGE_IMAGE_BUCKET_ID,
@@ -141,14 +142,21 @@ const DisplayMessages = () => {
             </div>
           ))
         ) : (
-          <Skeleton
-            count={10}
-            width={"50vw"}
-            height={"1.4rem"}
-            className="mt-[1.4rem] ml-[2rem]"
-            baseColor={"#d9d9d9"}
-          />
-        )}
+       <motion.div  initial={{ opacity: 0.2  ,rotateX:90}}
+          animate={{ opacity: 1 ,rotateX:0}}
+          transition={{
+            type: "spring",
+            duration: 2,
+            delay:.2,
+            repeatType: "reverse",
+          }}
+          className="w-full text-black  text-xl h-[50vh] flex flex-col items-center justify-center text-center font-semibold ">
+        <h1 >Select Chat from <br />your Contact  </h1>
+<motion.span initial={{y:'5rem'}} animate={{y:0}} transition={{type:"spring",stiffness:200,duration:3,delay:.5,repeatType:'reverse'}} className="text-3xl text-green-500 mt-5">
+  <RiChatSmile2Fill/>
+  </motion.span>
+       </motion.div>
+       )}
       </div>
     </>
   );
