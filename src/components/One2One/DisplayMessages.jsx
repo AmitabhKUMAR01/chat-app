@@ -17,12 +17,12 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
 
-const DisplayMessages = () => {
+const DisplayMessages = ({isDark,user}) => {
 
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
   const Messages = useSelector((state) => state.OneOne.Messages);
-  const user = useSelector((state) => state.Chat.user);
+  
 
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
@@ -84,8 +84,8 @@ const DisplayMessages = () => {
               <div className="message--header">
                 <p>
                   {message?.username ? (
-                    <span className="message--name--owner capitalize text-gray-300 font-semibold ">
-                      {userId + user[0].$id === message.unique_msg_02
+                    <span className="message--name--owner capitalize text-gray-700 font-semibold ">
+                      {userId + user.$id === message.unique_msg_02
                         ? message.username
                         : ""}
                     </span>
@@ -107,20 +107,20 @@ const DisplayMessages = () => {
                         }}
                       >
                         {message.$permissions.includes(
-                          `delete(\"user:${user[0].$id}\")`
+                          `delete(\"user:${user.$id}\")`
                         ) && <AiFillDelete className="delete--btn" />}
                       </button>
                     </div>
                   )}
               </div>
 
-              {userId + user[0].$id === message.unique_msg_01 ||
-              user[0].$id + userId === message.unique_msg_01 ? (
+              {userId + user.$id === message.unique_msg_01 ||
+              user.$id + userId === message.unique_msg_01 ? (
                 <div
                   className={`${
-                    userId + user[0].$id === message.unique_msg_02
-                      ? "message--body"
-                      : "message--body--owner"
+                    userId + user.$id === message.unique_msg_02
+                      ? ` ${isDark?'message--body--dark':'message--body'}`
+                      : `${isDark?'messsage--body--owner--dark':'message--body--owner'}`
                   }`}
                 >
                   <span></span>

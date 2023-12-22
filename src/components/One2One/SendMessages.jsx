@@ -15,6 +15,7 @@ const SendMessages = () => {
     const userId= useSelector((state)=>state.OneOne.selectedUser.id)
     const user = useSelector((state) => state.Chat.user);
     
+  const isDark= useSelector((state) => state.Chat.darkMode);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,12 +53,12 @@ const SendMessages = () => {
         {isUploadOpen?<ImageUploader type="message"/>:null}
       <div className="flex  space-x-0" >
 
-      <input type='text' placeholder='say something...' className="one-one-input" value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
-      <button className="text-2xl max-w-min hover:text-green-500 text-red-500 z-50 ml-20" onClick={()=>setIsUploadOpen(prev=>!prev)}><AiOutlineUpload/></button>
+      <input type='text' placeholder='say something...' className={`one-one-input ${isDark?'one-one-input-dark':''}`} value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
+      <button className="text-2xl max-w-min hover:text-green-500 text-red-500 z-0 ml-20" onClick={()=>setIsUploadOpen(prev=>!prev)}><AiOutlineUpload/></button>
       </div>
     </div>
       </div>
- <SubmitButton/>
+ <SubmitButton isDark={isDark}/>
   </form>
   
   )

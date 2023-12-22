@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { MdGroupAdd } from "react-icons/md";
 import SearchSelect from "../SearchInput";
-const UserList = ({ select }) => {
+const UserList = ({ select ,isDark}) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const UsersList = useSelector((state) => state.OneOne.UsersList);
@@ -32,7 +32,7 @@ const UserList = ({ select }) => {
   return (
     <div className=" z-50  ml-[80vw] ">
       <button
-        className="user-list-btn    p-2 rounded-full  text-3xl"
+        className={`user-list-btn    p-2 rounded-full  text-3xl ${isDark? "user-list-btn-dark" : ""}`}
         onClick={() => setIsContactOpen((prev) => !prev)}
       >
         {location.pathname === "/group" ? <MdGroupAdd /> : <BiSolidContact />}
@@ -50,7 +50,7 @@ const UserList = ({ select }) => {
         {isContactOpen && UsersList.length !== 0 ? (
           <div
             style={{ background: "rgba(4, 17, 44, 1)" }}
-            className="user-list-card absolute   right-0 w-[12rem]  h-[40vh] overflow-scroll p-[.5rem] rounded-md"
+            className={`user-list-card ${isDark?'user-list-card-dark':''} absolute   right-0 w-[12rem]  h-[40vh] overflow-scroll p-[.5rem] rounded-md `}
           >
             <SearchSelect />
             {FilteredUserList.map((User) => (

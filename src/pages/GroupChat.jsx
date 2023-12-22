@@ -2,31 +2,23 @@ import DisplayMessages from "../components/GroupChat/DisplayMessages";
 import GroupList from "../components/GroupChat/GroupList";
 import SendMessages from "../components/GroupChat/SendMessages";
 import Sidebar from "../components/Chat-Sidebar/Sidebar";
-import { useSelector } from "react-redux";
 import Lottie from "lottie-react";
 import Robot from "../assets/robot.json";
 import Smily from "../assets/smilyface.json";
-
 import { motion } from "framer-motion";
-
+import WelcomeMessage from "../components/CommonComponents/WelcomeMessage";
+import { useSelector } from "react-redux";
 const GroupChat = () => {
-  const user = useSelector((state) => state.Chat.user);
+    const isDark= useSelector((state) => state.Chat.darkMode);
+
   return (
-    <div className="one-onechat " id="group">
-      <div className="h-[5rem] pt-5">
+    <div className={`One-One-Container ${isDark?'dark-container':''}`} >
+       <WelcomeMessage isDark={isDark}/>
+      <div className="h-[5rem]">
         <Sidebar />
       </div>
-      {/* <CreateGroup/> */}
       <GroupList />
       <div className="container">
-        <div className="w-[100vw] absolute text-center  left-0 text-xl flex p-2 justify-center top-10 text-black font-semibold  ">
-          welcome to chat <span></span>
-          {user && (
-            <span className="text-rose-700 capitalize ml-4 ">
-              {user[0].name}{" "}
-            </span>
-          )}
-        </div>
         <motion.div
           initial={{ y: "-10vh" }}
           animate={{ y: 0 }}
@@ -49,7 +41,7 @@ const GroupChat = () => {
             delay: 0.5,
             duration: 3,
           }}
-          className="w-[15rem] hidden md:block  absolute top-[10%] right-[14%]"
+          className="w-[15rem] hidden md:block  absolute right-[14%]"
         >
           <Lottie animationData={Smily} />
         </motion.div>
@@ -64,15 +56,13 @@ const GroupChat = () => {
             stiffness: 300,
             damping: 18,
           }}
-          className="room--container border-2 "
-          id={"group--room"}
+          className={`one-one-Hero ${isDark?'one-one-Hero-Dark':''} -mt-[5rem] `} 
         >
-          <SendMessages />
+          <SendMessages isDark={isDark}/>
           <div></div>
-          <DisplayMessages />
+          <DisplayMessages isDark={isDark} />
         </motion.div>
       </div>
-      <div className="fixed bottom-10"></div>
     </div>
   );
 };

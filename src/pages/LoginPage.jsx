@@ -99,6 +99,7 @@ const LoginPage = () => {
                 <input
                   type="email"
                   name="email"
+                  className="input"
                   required
                   placeholder="enter your email"
                   value={credentials.email}
@@ -109,6 +110,7 @@ const LoginPage = () => {
                   <input
                     type={isPasswordVisible ? "password" : "text"}
                     name="password"
+                    className="input"
                     id="pass"
                     required
                     placeholder="enter your password"
@@ -116,7 +118,7 @@ const LoginPage = () => {
                     onChange={handleChange}
                   />
                   <span
-                    className="text-2xl text-rose-600"
+                    className="text-2xl  text-rose-600"
                     onClick={() => setIsPasswordVisible((prev) => !prev)}
                   >
                     {isPasswordVisible ? (

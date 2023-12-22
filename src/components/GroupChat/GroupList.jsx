@@ -29,7 +29,7 @@ const GroupList = () => {
     
     <div className='absolute right-0  sm:w-[10rem] top-0 sm:bg-transparent w-[5rem]  h-[5rem]'>
     <button className="sm:absolute fixed sm:top-0 bottom-[5rem] left-0 bg-transparent  text-2xl text-blue-500 hover:text-green-500 " id='mybutton' onClick={()=>setIsGroupListOpen(prev=>!prev)}><TiGroup/></button>
-   {  <motion.div className='p-2 absolute left-40' animate={isGroupListOpen ? "open" : "closed"}
+   {  <motion.div className='p-2 absolute z-50 left-40' animate={isGroupListOpen ? "open" : "closed"}
         
         transition={{
           duration: 3.5,

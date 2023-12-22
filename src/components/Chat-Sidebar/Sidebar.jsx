@@ -5,22 +5,19 @@ import CreateGroup from "../GroupChat/CreateGroup";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { AiOutlineClose } from "react-icons/ai";
-import { LogoutUser } from "../../Redux/ChatSlice"
+import { LogoutUser, ToggleTheme } from "../../Redux/ChatSlice";
 import { useDispatch } from "react-redux";
+import './Sidebar.scss'
 const Sidebar = () => {
   const [click, setClick] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  
-  const HandleLogOut=()=>{
 
+  const HandleLogOut = () => {
     dispatch(LogoutUser());
     localStorage.setItem("myPassword", null);
     localStorage.setItem("myEmail", null);
-    
-
-  
-  }
+  };
 
   const variants = {
     open: { opacity: 1, x: 0, rotate: 0, y: 25 },
@@ -28,17 +25,17 @@ const Sidebar = () => {
   };
   const burger = {
     open: { rotate: 90, color: "red", scale: 0.9 },
-    closed: { rotate: 0, color: "black", scale: 1 },
+    closed: { rotate: 0, color: "red", scale: 1 },
   };
   return (
     <div
-      className={`absolute left-5  bg-transparent rounded-lg ${
+      className={`absolute z-50 left-5  bg-transparent rounded-lg ${
         click ? "h-[100vh]" : "h-[1rem]"
       }  z-50 w-[5rem]`}
     >
       <motion.div
         onClick={() => setClick((prev) => !prev)}
-        className="text-2xl w-5 hover:text-green-500 "
+        className="text-2xl text-rose-500 w-5 hover:text-green-500 "
         animate={click ? "open" : "closed"}
         whileHover={{ scale: 1.3, color: "green" }}
         transition={{
@@ -51,9 +48,9 @@ const Sidebar = () => {
       >
         {click ? <AiOutlineClose /> : <RxHamburgerMenu />}
       </motion.div>
-      <Tilt className={` ${click ? "block" : "hidden"} min-w-max`}>
+      <Tilt className={` ${click ? "block" : "hidden"} z-50 min-w-max`}>
         <motion.div
-          className="w-[13rem] rounded-xl "
+          className="w-[13rem] z-50 rounded-xl "
           style={{ background: "rgba(4, 17, 44, 1)" }}
           animate={click ? "open" : "closed"}
           transition={{
@@ -64,7 +61,7 @@ const Sidebar = () => {
           }}
           variants={variants}
         >
-          <ul className=" p-6 m-3 transition-all  duration-1000 font-xl text-left ">
+          <ul className=" p-6 m-3 z-50 transition-all  duration-1000 font-xl text-left ">
             <motion.li
               whileHover={{ originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -72,6 +69,18 @@ const Sidebar = () => {
               {/* <a className="mb-3 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent hover:text-white  transition-colors duration-300 cursor-pointer">create group</a> */}
               {location.pathname === "/group" ? <CreateGroup /> : null}
             </motion.li>
+            <label className="ui-switch ">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  onChange={() => dispatch(ToggleTheme())}
+                />
+                <div className="slider">
+                  <div className="circle">
+
+                  </div>
+                </div>
+              </label>
             <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -88,7 +97,7 @@ const Sidebar = () => {
                 Group Chat
               </Link>
             </motion.li>
-        <motion.li
+            <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -121,15 +130,15 @@ const Sidebar = () => {
               </Link>
             </motion.li>
 
-
             <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Link className="mb-3" to={"/img"}>
                 upload image
-                </Link>
+              </Link>
             </motion.li>
+             
           </ul>
         </motion.div>
       </Tilt>

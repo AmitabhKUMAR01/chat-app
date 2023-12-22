@@ -62,9 +62,13 @@ const ChatSlice = createSlice({
   initialState: {
     user: null,
     isLoading: false,
+    darkMode: false,
   },
   reducers: {
-      
+      ToggleTheme(state,action) {
+        state.darkMode=!state.darkMode;
+        console.log("Theme changed!");
+      }
   },
   extraReducers: (builder) => {
     builder.addCase(LoginUser.pending, (state, action) => {
@@ -97,5 +101,5 @@ const ChatSlice = createSlice({
   },
 });
 
-export const { toggleUser, handleUserLogin } = ChatSlice.actions;
+export const { ToggleTheme,toggleUser, handleUserLogin } = ChatSlice.actions;
 export default ChatSlice.reducer;

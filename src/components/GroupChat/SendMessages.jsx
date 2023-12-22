@@ -6,14 +6,14 @@ import { useDispatch,useSelector } from "react-redux";
 import Textarea from "../CommonComponents/Textarea";
 import SubmitButton from "../CommonComponents/SubmitButton";
 
-const SendMessages = () => {
+const SendMessages = ({isDark}) => {
   
     const [messageBody, setMessageBody] = useState("");
     const [isRealTime,setIsRealTime] = useState(false)
     const groupId = useSelector((state)=>state.GroupChat.selectedGroup.id)
     const groupname = useSelector((state)=>state.GroupChat.selectedGroup.groupname)
     const user = useSelector((state) => state.Chat.user);
-   
+
         
     
     const handleSubmit = async (e) => {
@@ -53,9 +53,9 @@ const SendMessages = () => {
     
   <form id="message--form" onSubmit={handleSubmit}>
     <div>
-    <Textarea value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
+    <input className={`one-one-input ${isDark?'one-one-input-dark':''}`} value={messageBody} onChange={(e)=>setMessageBody(e.target.value)}/>
     </div>
-    <SubmitButton/>
+    <SubmitButton isDark={isDark}/>
   </form>
   
   )

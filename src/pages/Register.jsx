@@ -43,6 +43,8 @@ const RegisterPage = () => {
               <label>Name:</label>
               <input
                 required
+                className='input'
+                id="name"
                 type="text"
                 name="name"
                 value={credentials.name}
@@ -58,6 +60,7 @@ const RegisterPage = () => {
               <label>Email:</label>
               <input
                 required
+                className='input'
                 type="email"
                 name="email"
                 placeholder="Enter your email..."
@@ -72,6 +75,7 @@ const RegisterPage = () => {
               <label>Password:</label>
               <input
                 required
+                className='input'
                 type="password"
                 name="password1"
                 placeholder="Enter a password..."
@@ -86,6 +90,7 @@ const RegisterPage = () => {
               <label>Confirm password:</label>
               <input
                 required
+                className='input'
                 type="password"
                 name="password2"
                 placeholder="Comfirm your password..."

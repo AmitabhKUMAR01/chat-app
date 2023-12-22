@@ -4,7 +4,7 @@ import { ID ,Permission,Role} from "appwrite";
 import { USER_PROFILE_BUCKET_ID,MESSAGE_IMAGE_BUCKET_ID,ONE_MESSAGE_COLLECTION, storage,databases,USER_COLLECTIONS ,DATABASES_ID,PROJECT_ID,} from "../AppWrite/appwriteConfig";
 import { getUsersList } from "../Redux/OneOneChatSlice";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-
+import {useNavigate} from 'react-router-dom'
 //type is used to distinguish between message image and profile image actions
 
 const ImageUploader = ({type}) => {
@@ -15,6 +15,7 @@ const ImageUploader = ({type}) => {
   const UsersList= useSelector((state)=>state.OneOne.UsersList)
   const [AllImages,setAllImages] = useState([]);
   const [user_Detail,setuser_Detail]= useState(null);
+  const navigate= useNavigate();
   // const getAllImage = () => {
   //   const promise = storage.listFiles(USER_PROFILE_BUCKET_ID);
   //   promise.then(
@@ -62,6 +63,11 @@ const ImageUploader = ({type}) => {
         user_Detail[0].$id,
         {'profile_url': `https://cloud.appwrite.io/v1/storage/buckets/${USER_PROFILE_BUCKET_ID}/files/${newImage.$id}/view?project=${PROJECT_ID}&mode=admin`}
        );
+       promise.then(function () {
+        navigate('/one')
+}, function (error) {
+    console.log(error); // Failure
+});
       console.log('user iiiid',user[0].$id);
       console.log(newImage,'createdfdskjf',newImage.$userId);
       setFile('')

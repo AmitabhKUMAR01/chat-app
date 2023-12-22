@@ -10,13 +10,13 @@ import {
   RemoveMessages,  SetMessages,  getMessages,} from "../../Redux/GroupChatSlice";
 import { InfinitySpin } from "react-loader-spinner";
 
-const DisplayMessages = () => {
+const DisplayMessages = ({isDark}) => {
   const dispatch = useDispatch();
 
   // const userId = useSelector((state) => state.OneOne.selectedUser.id);
   const Messages = useSelector((state) => state.GroupChat.Messages);
   const selectedGroup = useSelector((state) => state.GroupChat.selectedGroup);
-  const user = useSelector((state) => state.Chat.user);
+  const user = useSelector((state) => state.Chat.user)[0];
 
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
@@ -80,8 +80,8 @@ const DisplayMessages = () => {
                   <div className="message--header">
                     <p>
                       {message?.sender_name ? (
-                        <span className="message--name--owner capitalize text-gray-400 font-bold">
-                          {user[0].$id !== message.sender_id
+                        <span className="message--name--owner capitalize text-gray-700 font-bold">
+                          {user.$id !== message.sender_id
                             ? message.sender_name
                             : null}
                         </span>
@@ -107,19 +107,19 @@ const DisplayMessages = () => {
                             }}
                           >
                             {message.$permissions.includes(
-                              `delete(\"user:${user[0].$id}\")`
+                              `delete(\"user:${user.$id}\")`
                             ) && <AiFillDelete className="delete--btn" />}
                           </button>
                         </div>
                       )}
                   </div>
 
-                  {selectedGroup.id.includes(user[0].$id) ? (
+                  {selectedGroup.id.includes(user.$id) ? (
                     <div
                       className={`${
-                        user[0].$id === message.sender_id
-                          ? "message--body--owner"
-                          : "message--body"
+                        user.$id === message.sender_id
+                        ? `${isDark?'message--body--owner--dark':'message--body--owner'}`
+                        : ` ${isDark?'message--body--dark':'message--body'}`
                       }`}
                     >
                       <span></span>

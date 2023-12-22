@@ -3,17 +3,18 @@ import client, {
   DATABASES_ID,
   COLLECTIONS_ID_MESSAGE,
 } from "../AppWrite/appwriteConfig.js";
-import { AiFillDelete} from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { ID, Query, Role, Permission } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Chat-Sidebar/Sidebar.jsx";
 import { FaLongArrowAltDown } from "react-icons/fa";
-
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import SubmitButton from "../components/CommonComponents/SubmitButton.jsx";
+import WelcomeMessage from "../components/CommonComponents/WelcomeMessage.jsx";
 
 const Chat = () => {
   //------------------states--------------------
@@ -25,6 +26,7 @@ const Chat = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.Chat.user);
+  const isDark= useSelector((state) => state.Chat.darkMode);
 
   if (!user) return navigate("/login");
   // console.log("Welcome user", user[0].name);
@@ -112,40 +114,25 @@ const Chat = () => {
 
   return (
     <div className="chat" id="group">
-      <div className="container p-5">
+      <div className={`One-One-Container ${isDark?'dark-container':''} p-5`}>
+        <WelcomeMessage isDark={isDark} />
         <div className="h-[2rem] pt-1 absolute top-0 left-1">
           <Sidebar />
         </div>
-
-        {/* <ImageUpload/> */}
-        <div className="w-[100vw] absolute text-center  left-0 text-xl flex p-2 justify-center top-7 text-white font-semibold    ">
-          welcome to chat <span></span>
-          {user && (
-            <span className="text-red-400 capitalize ml-4 ">
-              {user[0].name}{" "}
-            </span>
-          )}
-        </div>
-
-        <div className="room--container bg-tran">
+        <div className={`one-one-Hero ${isDark?'one-one-Hero-Dark':''}`}>
           <form id="message--form" onSubmit={handleSubmit}>
             <div>
-              <textarea
+              <input
+                type="text"
+                placeholder="say something..."
+                className={`one-one-input ${isDark?'one-one-input-dark':''} z-10`}
                 required
                 maxLength={"1000"}
-                placeholder="say something"
                 onChange={(e) => setMessageBody(e.target.value)}
                 value={messageBody}
-                className="h-[4rem]"
-              >
-                {" "}
-              </textarea>
+              ></input>
             </div>
-            <div className="send-btn--wrapper">
-              <button className="btn  one-btn select-none" type="submit">
-                SEND
-              </button>
-            </div>
+            <SubmitButton isDark={isDark}/>
           </form>
           <div className="messages">
             {messages.length !== 0 ? (
@@ -158,7 +145,7 @@ const Chat = () => {
                   <div className="message--header">
                     <p>
                       {message?.username ? (
-                        <span className="message--name--owner capitalize text-gray-400 font-bold">
+                        <span className="message--name--owner capitalize text-gray-700 font-bold">
                           {user[0].name !== message.username
                             ? message.username
                             : null}
@@ -192,12 +179,12 @@ const Chat = () => {
                   {message.$permissions.includes(
                     `delete(\"user:${user[0].$id}\")`
                   ) ? (
-                    <div className={` message--body--owner cursor-pointer `}>
+                    <div className={` message--body--owner ${isDark?'message--body--owner--dark':''} cursor-pointer `}>
                       <span></span>
                       <span>{message.body}</span>
                     </div>
                   ) : (
-                    <div className={` message--body cursor-pointer`}>
+                    <div className={` message--body ${isDark?'message--body--dark':''} cursor-pointer`}>
                       <span>{message.body}</span>
                     </div>
                   )}
@@ -214,18 +201,21 @@ const Chat = () => {
             )}
           </div>
           <motion.button
-          className="justify-center  items-center flex  w-full text-xl text-green-500 hover:text-rose500 "
-          initial={{y:0}}
-        animate={{ y: 10 }}
-        transition={{ type: "spring",  delay: 0.1, duration: 3 ,repeat:Infinity}}
+            className="justify-center  items-center flex  w-full text-xl text-green-500 hover:text-rose500 "
+            initial={{ y: 0 }}
+            animate={{ y: 10 }}
+            transition={{
+              type: "spring",
+              delay: 0.1,
+              duration: 3,
+              repeat: Infinity,
+            }}
             onClick={() => {
               setDataLimit(dataLimit + 10);
               getMessages(dataLimit);
             }}
           >
-         
-            <FaLongArrowAltDown />
-
+          <FaLongArrowAltDown />
           </motion.button>
         </div>
       </div>
