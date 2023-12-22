@@ -120,7 +120,7 @@ const DisplayMessages = ({isDark,user}) => {
                   className={`${
                     userId + user.$id === message.unique_msg_02
                       ? ` ${isDark?'message--body--dark':'message--body'}`
-                      : `${isDark?'messsage--body--owner--dark':'message--body--owner'}`
+                      : `${isDark?'message--body--owner--dark':'message--body--owner'}`
                   }`}
                 >
                   <span></span>
