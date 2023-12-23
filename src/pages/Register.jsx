@@ -43,7 +43,6 @@ const RegisterPage = () => {
               <label>Name:</label>
               <input
                 required
-                className='input'
                 id="name"
                 type="text"
                 name="name"
@@ -52,7 +51,7 @@ const RegisterPage = () => {
                 onChange={(e) => {
                   handleInputChange(e);
                 }}
-                className="bg-transparent outline-none "
+                className="bg-transparent outline-none input"
               />
             </div>
 

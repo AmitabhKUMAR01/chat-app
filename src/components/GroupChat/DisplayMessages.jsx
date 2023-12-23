@@ -1,75 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
-import client, {
-  DATABASES_ID,
-  GROUP_MESSAGES_COLLECTION_ID,
-} from "../../AppWrite/appwriteConfig";
-import {
-  RemoveMessages,  SetMessages,  getMessages,} from "../../Redux/GroupChatSlice";
 import { InfinitySpin } from "react-loader-spinner";
-
+import useRealTime from "../One2One/useRealTime";
 const DisplayMessages = ({isDark}) => {
   const dispatch = useDispatch();
-
-  // const userId = useSelector((state) => state.OneOne.selectedUser.id);
-  const Messages = useSelector((state) => state.GroupChat.Messages);
   const selectedGroup = useSelector((state) => state.GroupChat.selectedGroup);
   const user = useSelector((state) => state.Chat.user)[0];
-
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
-  const [MMessages, setMMessages] = useState([]);
-
-  useEffect(() => {
-    setMMessages(Messages);
-  }, [selectedGroup.id]);
-
+  const {Messages} = useRealTime(user,'group')
   const handleDoubleClick = (message) => {
     setVisibleDeleteMessages((prev) => !prev);
     console.log("handleDoubleClick", visibleDeleteMessages);
     setSelectedMessages(message);
   };
-  useEffect(() => {
-    dispatch(getMessages());
-    const unsubscribe = client.subscribe(
-      `databases.${DATABASES_ID}.collections.${GROUP_MESSAGES_COLLECTION_ID}.documents`,
-      (response) => {
-        console.log("Real Time Res", response);
-        if (
-          response.events.includes(
-            "databases.*.collections.*.documents.*.create"
-          )
-        ) {
-          setMMessages((prevState) => [response.payload, ...prevState]);
-          dispatch(SetMessages(response.payload));
-          console.log("A message was sent");
-        }
-        if (
-          response.events.includes(
-            "databases.*.collections.*.documents.*.delete"
-          )
-        ) {
-          dispatch(RemoveMessages(response.payload.$id));
-          setMMessages((messages) =>
-            messages.filter((message) => message.$id !== response.payload.$id)
-          );
-          console.log("A message was Deleted");
-        }
-        console.log("i am the user ", user);
-      }
-    );
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
   return (
     <>
       <div className="messages">
-        {MMessages.length !== 0 ? (
-          MMessages.map(
+        {Messages.length !== 0 ? (
+          Messages.map(
             (message) =>
               message.group_name === selectedGroup.groupname && (
                 <div
@@ -139,5 +90,4 @@ const DisplayMessages = ({isDark}) => {
     </>
   );
 };
-
 export default DisplayMessages;

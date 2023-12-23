@@ -26,9 +26,7 @@ const UserList = ({ select ,isDark}) => {
   useEffect(() => {
     dispatch(getUsersList());
     dispatch(SelectUser({ id: 0, username: "none" }));
-    
   }, []);
-
   return (
     <div className=" z-50  ml-[80vw] ">
       <button
@@ -85,9 +83,6 @@ const UserList = ({ select ,isDark}) => {
                       <h1>{User.Username}</h1>
                       <p className="text-[.7rem]  text-gray-300">{User.unque_name}</p>
                     </div>
-                    
-                    
-                    
                   </div>
                 ) : null}
               </div>
@@ -98,5 +93,4 @@ const UserList = ({ select ,isDark}) => {
     </div>
   );
 };
-
 export default UserList;

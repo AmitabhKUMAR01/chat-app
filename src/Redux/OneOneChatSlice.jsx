@@ -17,15 +17,7 @@ export const getUsersList = createAsyncThunk("getUsersList", async () => {
   return response.documents;
 });
 
-export const getMessages = createAsyncThunk("getMessages", async () => {
-  const response = await databases.listDocuments(
-    DATABASES_ID,
-    ONE_MESSAGE_COLLECTION,
-    [Query.orderDesc("$createdAt")]
-  );
-  console.log("response =<>?=> ", response.documents);
-  return response.documents;
-});
+
 
 export const deleteMessage = createAsyncThunk(
   "deleteMessage",
@@ -112,17 +104,7 @@ const OneOneChatSlice = createSlice({
     builder.addCase(getUsersList.rejected, (state, action) => {
       state.isLoading = false;
     });
-    builder.addCase(getMessages.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(getMessages.fulfilled, (state, action) => {
-      state.Messages = action.payload;
-      state.isLoading = false;
-    });
-    builder.addCase(getMessages.rejected, (state, action) => {
-      state.isLoading = false;
-    });
-    builder.addCase(deleteMessage.pending, (state, action) => {
+        builder.addCase(deleteMessage.pending, (state, action) => {
       state.isLoading = true;
     });
     builder.addCase(deleteMessage.fulfilled, (state, action) => {

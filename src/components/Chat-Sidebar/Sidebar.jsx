@@ -62,13 +62,6 @@ const Sidebar = () => {
           variants={variants}
         >
           <ul className=" p-6 m-3 z-50 transition-all  duration-1000 font-xl text-left ">
-            <motion.li
-              whileHover={{ originX: 0, color: "#FFF5A1" }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              {/* <a className="mb-3 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent hover:text-white  transition-colors duration-300 cursor-pointer">create group</a> */}
-              {location.pathname === "/group" ? <CreateGroup /> : null}
-            </motion.li>
             <label className="ui-switch ">
                 <input
                   type="checkbox"
@@ -81,6 +74,13 @@ const Sidebar = () => {
                   </div>
                 </div>
               </label>
+            <motion.li
+              whileHover={{ originX: 0, color: "#FFF5A1" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              {/* <a className="mb-3 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent hover:text-white  transition-colors duration-300 cursor-pointer">create group</a> */}
+              {location.pathname === "/group" ? <CreateGroup /> : null}
+            </motion.li>
             <motion.li
               whileHover={{ scale: 1.3, originX: 0, color: "#FFF5A1" }}
               transition={{ type: "spring", stiffness: 300 }}

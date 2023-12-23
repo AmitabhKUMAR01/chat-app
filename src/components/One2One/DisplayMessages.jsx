@@ -1,81 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { deleteMessage } from "../../Redux/OneOneChatSlice";
 import { RiChatSmile2Fill } from "react-icons/ri";
-import {motion} from 'framer-motion'
-import client, {
-  DATABASES_ID,
-  MESSAGE_IMAGE_BUCKET_ID,
-  ONE_MESSAGE_COLLECTION,
-} from "../../AppWrite/appwriteConfig";
-import {
-  RemoveMessages,
-  SetMessages,
-  getMessages,
-} from "../../Redux/OneOneChatSlice";
+import { motion } from "framer-motion";
+import { MESSAGE_IMAGE_BUCKET_ID } from "../../AppWrite/appwriteConfig";
 import "react-loading-skeleton/dist/skeleton.css";
-import Skeleton from "react-loading-skeleton";
-
-const DisplayMessages = ({isDark,user}) => {
-
+import useRealTime from "./useRealTime";
+const DisplayMessages = ({ isDark, user }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
-  const Messages = useSelector((state) => state.OneOne.Messages);
-  
-
+  const { Messages } = useRealTime(user,'one');
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
-  const [MMessages, setMMessages] = useState([]);
-
-  useEffect(() => {
-    setMMessages(Messages);
-  }, [userId]);
-
   const handleDoubleClick = (message) => {
     setVisibleDeleteMessages((prev) => !prev);
     setSelectedMessages(message);
   };
-  useEffect(() => {
-    dispatch(getMessages());
-    const unsubscribe = client.subscribe(
-      `databases.${DATABASES_ID}.collections.${ONE_MESSAGE_COLLECTION}.documents`,
-      (response) => {
-        console.log("Real Time Res", response);
-        if (
-          response.events.includes(
-            "databases.*.collections.*.documents.*.create"
-          )
-        ) {
-          setMMessages((prevState) => [response.payload, ...prevState]);
-          dispatch(SetMessages(response.payload));
-          console.log("A message was sent");
-        }
-        if (
-          response.events.includes(
-            "databases.*.collections.*.documents.*.delete"
-          )
-        ) {
-          dispatch(RemoveMessages(response.payload.$id));
-          setMMessages((messages) =>
-            messages.filter((message) => message.$id !== response.payload.$id)
-          );
-          console.log("A message was Deleted");
-        }
-
-        console.log("i am the user ", user);
-      }
-    );
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
   return (
     <>
       <div className="messages cursor-pointer">
-        {MMessages.length !== 0 ? (
-          MMessages.map((message) => (
+        {Messages.length !== 0 ? (
+          Messages.map((message) => (
             <div
               onDoubleClick={() => handleDoubleClick(message)}
               className="message--wrapper"
@@ -119,8 +65,12 @@ const DisplayMessages = ({isDark,user}) => {
                 <div
                   className={`${
                     userId + user.$id === message.unique_msg_02
-                      ? ` ${isDark?'message--body--dark':'message--body'}`
-                      : `${isDark?'message--body--owner--dark':'message--body--owner'}`
+                      ? ` ${isDark ? "message--body--dark" : "message--body"}`
+                      : `${
+                          isDark
+                            ? "message--body--owner--dark"
+                            : "message--body--owner"
+                        }`
                   }`}
                 >
                   <span></span>
@@ -142,24 +92,39 @@ const DisplayMessages = ({isDark,user}) => {
             </div>
           ))
         ) : (
-       <motion.div  initial={{ opacity: 0.2  ,rotateX:90}}
-          animate={{ opacity: 1 ,rotateX:0}}
-          transition={{
-            type: "spring",
-            duration: 2,
-            delay:.2,
-            repeatType: "reverse",
-          }}
-          className="w-full text-black  text-xl h-[50vh] flex flex-col items-center justify-center text-center font-semibold ">
-        <h1 >Select Chat from <br />your Contact  </h1>
-<motion.span initial={{y:'5rem'}} animate={{y:0}} transition={{type:"spring",stiffness:200,duration:3,delay:.5,repeatType:'reverse'}} className="text-3xl text-green-500 mt-5">
-  <RiChatSmile2Fill/>
-  </motion.span>
-       </motion.div>
-       )}
+          <motion.div
+            initial={{ opacity: 0.2, rotateX: 90 }}
+            animate={{ opacity: 1, rotateX: 0 }}
+            transition={{
+              type: "spring",
+              duration: 2,
+              delay: 0.2,
+              repeatType: "reverse",
+            }}
+            className="w-full text-black  text-xl h-[50vh] flex flex-col items-center justify-center text-center font-semibold "
+          >
+            <h1>
+              Select Chat from <br />
+              your Contact{" "}
+            </h1>
+            <motion.span
+              initial={{ y: "5rem" }}
+              animate={{ y: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                duration: 3,
+                delay: 0.5,
+                repeatType: "reverse",
+              }}
+              className="text-3xl text-green-500 mt-5"
+            >
+              <RiChatSmile2Fill />
+            </motion.span>
+          </motion.div>
+        )}
       </div>
     </>
   );
 };
-
 export default DisplayMessages;
