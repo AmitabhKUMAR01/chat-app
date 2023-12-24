@@ -102,7 +102,10 @@ const ImageUploader = ({type}) => {
         permissions
         
        );
-      console.log('user iiiid',user[0].$id);
+       promise.then(()=>{
+         console.log('image uploaded user iiiid',user[0].$id);
+
+       })
       console.log(newImage,'createdfdskjf oooh yeah',newImage.$userId);
       setFile('')
     } else {

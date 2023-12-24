@@ -7,12 +7,15 @@ import { motion } from "framer-motion";
 import { MESSAGE_IMAGE_BUCKET_ID } from "../../AppWrite/appwriteConfig";
 import "react-loading-skeleton/dist/skeleton.css";
 import useRealTime from "./useRealTime";
+import Skeleton from "react-loading-skeleton";
+
 const DisplayMessages = ({ isDark, user }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
-  const { Messages } = useRealTime(user,'one');
+  const { Messages,isLoading } = useRealTime(user,'one');
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
+  console.log('i am userId: ', userId);
   const handleDoubleClick = (message) => {
     setVisibleDeleteMessages((prev) => !prev);
     setSelectedMessages(message);
@@ -20,7 +23,7 @@ const DisplayMessages = ({ isDark, user }) => {
   return (
     <>
       <div className="messages cursor-pointer">
-        {Messages.length !== 0 ? (
+        {Messages.length !== 0 && !isLoading? (
           Messages.map((message) => (
             <div
               onDoubleClick={() => handleDoubleClick(message)}
@@ -103,10 +106,16 @@ const DisplayMessages = ({ isDark, user }) => {
             }}
             className="w-full text-black  text-xl h-[50vh] flex flex-col items-center justify-center text-center font-semibold "
           >
-            <h1>
+          {!isLoading?(  <h1>
               Select Chat from <br />
               your Contact{" "}
-            </h1>
+            </h1>):(   <Skeleton
+                count={10}
+                width={"50vw"}
+                height={"2rem"}
+                className="mt-[2rem] ml-[2rem]"
+                baseColor={"#d9d9d9"}
+              />)}
             <motion.span
               initial={{ y: "5rem" }}
               animate={{ y: 0 }}

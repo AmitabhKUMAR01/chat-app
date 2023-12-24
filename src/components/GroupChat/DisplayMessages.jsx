@@ -10,7 +10,7 @@ const DisplayMessages = ({isDark}) => {
   const user = useSelector((state) => state.Chat.user)[0];
   const [visibleDeleteMessages, setVisibleDeleteMessages] = useState(false);
   const [selectedMessage, setSelectedMessages] = useState("");
-  const {Messages} = useRealTime(user,'group')
+  const {Messages,isLoading} = useRealTime(user,'group')
   const handleDoubleClick = (message) => {
     setVisibleDeleteMessages((prev) => !prev);
     console.log("handleDoubleClick", visibleDeleteMessages);
@@ -19,7 +19,7 @@ const DisplayMessages = ({isDark}) => {
   return (
     <>
       <div className="messages">
-        {Messages.length !== 0 ? (
+        {Messages.length !== 0 && !isLoading ? (
           Messages.map(
             (message) =>
               message.group_name === selectedGroup.groupname && (
