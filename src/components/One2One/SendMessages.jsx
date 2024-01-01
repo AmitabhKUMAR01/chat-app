@@ -56,6 +56,7 @@ const SendMessages = () => {
               onChange={(e) => setMessageBody(e.target.value)}
             />
             <button
+              type="button"
               className="text-2xl max-w-min hover:text-green-500 text-red-500 z-0 ml-20"
               onClick={() => setIsUploadOpen((prev) => !prev)}
             >
