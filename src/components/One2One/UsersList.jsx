@@ -77,7 +77,7 @@ const UserList = ({ select ,isDark}) => {
                       src={User.profile_url}
                       loading="lazy"
                       alt="profile"
-                      className="w-[2rem]  border-[2px] border-black rounded-full "
+                      className="max-w-[2.5rem] border-[2px] border-black rounded-full aspect-square object-contain "
                     />
                     <div className="flex flex-col text-left ml-2">
                       <h1>{User.Username}</h1>
