@@ -110,7 +110,7 @@ const RegisterPage = () => {
           </form>
 
           <p className="text-green-400 cursor-none">
-            Already have an account?  <Link className="text-rose-500 hover:text-white font-semibold  hov" to="/login">Login</Link> 
+            Already have an account ?  <Link className="text-rose-500 hover:text-white font-semibold  hov" to="/login">Login</Link> 
           </p>
         </div>
       ) : (
