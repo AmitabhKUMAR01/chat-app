@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { LoginUser } from "../Redux/ChatSlice";
+import { LoginUser,LogoutUser } from "../Redux/ChatSlice";
 import Loader from "../components/Loader";
 import Lottie from "lottie-react";
 import phone from "../assets/smartphone.json";
