@@ -33,6 +33,7 @@ const LoginPage = () => {
   }, [user, navigate]);
 
   useEffect(() => {
+    dispatch(LogoutUser());
     SaveToLocal();
   }, []);
 
