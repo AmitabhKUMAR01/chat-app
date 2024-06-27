@@ -12,6 +12,7 @@ import SubmitButton from "../CommonComponents/SubmitButton";
 import "../../Sass/OneoneChat.scss";
 const SendMessages = () => {
   const [messageBody, setMessageBody] = useState("");
+  const [isSubmitting ,setIsSubmitting] = useState(false);
   const [isRealTime, setIsRealTime] = useState(false);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const userId = useSelector((state) => state.OneOne.selectedUser.id);
@@ -19,6 +20,8 @@ const SendMessages = () => {
   const isDark = useSelector((state) => state.Chat.darkMode);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true)
     let payload = {
       body: messageBody,
       user_id: user[0].$id,
@@ -39,6 +42,9 @@ const SendMessages = () => {
     console.log("created", response);
 
     setIsRealTime((prev) => !prev);
+    setTimeout(() => {
+     setIsSubmitting(false); 
+    }, 1000);
     console.log("is Real Time", isRealTime);
   };
 
